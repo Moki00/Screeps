@@ -4,7 +4,6 @@ Game.spawns["Spawn1"].spawnCreep([WORK, CARRY, MOVE], "Builder1", {
 
 //tutorial 3 builder role
 var roleBuilder = {
-  /** @param {Creep} creep **/
   run: function (creep) {
     if (creep.memory.building && creep.store[RESOURCE_ENERGY] == 0) {
       creep.memory.building = false;
@@ -37,7 +36,6 @@ module.exports = roleBuilder;
 
 //redefined Harvester
 var roleHarvester = {
-  /** @param {Creep} creep **/
   run: function (creep) {
     if (creep.store.getFreeCapacity() > 0) {
       var sources = creep.room.find(FIND_SOURCES);
