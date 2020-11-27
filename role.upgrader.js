@@ -31,8 +31,4 @@ var roleUpgrader = {
     },
 };
 
-creep.moveTo(targets[0], {
-    visualizePathStyle: { stroke: "#ffffff" },
-});
-
 module.exports = roleUpgrader;
