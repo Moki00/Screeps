@@ -8,14 +8,14 @@ Game.creeps["Upgrader1"].memory.role = "upgrader";
 
 //builder
 Game.spawns["Spawn1"].spawnCreep([WORK, CARRY, MOVE], "Builder1", {
-  memory: { role: "builder" },
+    memory: { role: "builder" },
 });
 
 //can build Big Creep with 550 energy in spawn and extensions
 Game.spawns["Spawn1"].spawnCreep(
-  [WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE],
-  "HarvesterBig",
-  { memory: { role: "harvester" } }
+    [WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE],
+    "HarvesterBig",
+    { memory: { role: "harvester" } }
 );
 
 //self-destruct
