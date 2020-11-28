@@ -3,6 +3,16 @@ var roleUpgrader = require("role.upgrader");
 var roleBuilder = require("role.builder");
 
 module.exports.loop = function () {
+    for (var name in Game.rooms) {
+        console.log(
+            'Room "' +
+                name +
+                '" has ' +
+                Game.rooms[name].energyAvailable +
+                " energy"
+        );
+    }
+
     //clear memory of the dead
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {
@@ -44,7 +54,7 @@ module.exports.loop = function () {
         var newName = "Harvester" + Game.time;
         console.log("Spawning new harvester:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, CARRY, CARRY, MOVE, MOVE], //100*2+50*4=400
+            [WORK, CARRY, CARRY, MOVE, MOVE], //100*2+50*4=400
             newName,
             {
                 memory: { role: "harvester" },
