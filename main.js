@@ -13,8 +13,14 @@ module.exports.loop = function () {
         );
     }
 
-    // let energez = Game.rooms.W1S39.energyAvailable;
-    // console.log('Room "' + Game.room.name + '" has ' + energez + " energezzzz");
+    let energez = Game.rooms.W1S39.energyAvailable;
+    console.log('Room "' + Game.room.name + '" has ' + energez + " energezzzz");
+
+    // const containersWithEnergy = room.find(FIND_STRUCTURES, {
+    //     filter: (i) =>
+    //         i.structureType == STRUCTURE_CONTAINER &&
+    //         i.store[RESOURCE_ENERGY] > 0,
+    // });
 
     //clear memory of the dead
     for (var name in Memory.creeps) {
