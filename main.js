@@ -54,7 +54,7 @@ module.exports.loop = function () {
         var newName = "Harvester" + Game.time;
         console.log("Spawning new harvester:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            [WORK, CARRY, CARRY, MOVE, MOVE], //100*2+50*4=400
+            [WORK, WORK, CARRY, MOVE, MOVE], //100*2+50*3=350
             newName,
             {
                 memory: { role: "harvester" },
@@ -63,7 +63,12 @@ module.exports.loop = function () {
     }
 
     //#2 make an Upgrader
-    if (upgraders.length < 1 && harvesters.length > 0) {
+    if (
+        (upgraders.length < 1 && harvesters.length > 0) ||
+        (upgraders.length <= 1 &&
+            harvesters.length >= 1 &&
+            builders.length >= 1)
+    ) {
         var newName = "Upgrader" + Game.time;
         console.log("Spawning new upgrader:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
@@ -76,9 +81,9 @@ module.exports.loop = function () {
     }
 
     //#3 make a Builder
-    if (builders.length < 1 && harvesters.length > 1 && upgraders.length > 0) {
+    if (builders.length < 1 && harvesters.length > 0 && upgraders.length > 0) {
         var newName = "Builder" + Game.time;
-        console.log("Spawning new Builder:" + newName);
+        console.log("Spawning new builder:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
             [WORK, WORK, CARRY, MOVE], //100*2+50*2=300
             newName,
@@ -141,10 +146,9 @@ module.exports.loop = function () {
     //     var newName = "Builder" + Game.time;
     //     console.log("Spawning new upgrader:" + newName);
     //     //console.log Current status of energy and creeps
-    //     for (var name in Game.rooms) {
-    //         let energez = Game.rooms[name].energyAvailable;
-    //         console.log('Room "' + name + '" has ' + energez + " energezzzz");
-    //     }
+
+    let energez = Game.rooms.W1S39.energyAvailable;
+    console.log('Room "' + name + '" has ' + energez + " energezzzz");
 
     //     if (energez > 499) {
     //         Game.spawns["Spawn1"].spawnCreep(
