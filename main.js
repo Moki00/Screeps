@@ -67,13 +67,32 @@ module.exports.loop = function () {
     ) {
         var newName = "Upgrader" + Game.time;
         console.log("Spawning new upgrader:" + newName);
-        Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, CARRY, CARRY, MOVE, MOVE], //100*2+50*4=400
-            newName,
-            {
-                memory: { role: "upgrader" },
-            }
-        );
+
+        if (energyAvailable > 399) {
+            Game.spawns["Spawn1"].spawnCreep(
+                [WORK, WORK, CARRY, CARRY, MOVE, MOVE], //100*2+50*4=400
+                newName,
+                {
+                    memory: { role: "upgrader" },
+                }
+            );
+        } else if (energyAvailable > 299) {
+            Game.spawns["Spawn1"].spawnCreep(
+                [WORK, WORK, CARRY, MOVE], //100*2+50*2=300
+                newName,
+                {
+                    memory: { role: "upgrader" },
+                }
+            );
+        } else {
+            Game.spawns["Spawn1"].spawnCreep(
+                [WORK, CARRY, MOVE], //100+50*2=200
+                newName,
+                {
+                    memory: { role: "upgrader" },
+                }
+            );
+        }
     }
 
     //#3 make a Builder
