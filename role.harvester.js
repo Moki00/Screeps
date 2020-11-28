@@ -24,7 +24,7 @@ var roleHarvester = {
                     ERR_NOT_IN_RANGE
                 ) {
                     creep.moveTo(targets[0], {
-                        visualizePathStyle: { stroke: "#ffffff" },
+                        visualizePathStyle: { stroke: "#fff111" },
                     });
                 }
             }

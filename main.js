@@ -47,7 +47,10 @@ module.exports.loop = function () {
     //#1 make Harvesters
     if (
         harvesters.length < 1 ||
-        (harvesters.length < 2 && upgraders.length > 1 && builders.length > 1)
+        (harvesters.length < 2 &&
+            upgraders.length > 0 &&
+            builders.length > 0) ||
+        (harvesters.length < 3 && upgraders.length > 2 && builders.length > 2)
     ) {
         var newName = "Harvester" + Game.time;
         console.log("Spawning new harvester:" + newName);
@@ -74,7 +77,7 @@ module.exports.loop = function () {
     }
 
     //#3 make a Builder
-    if (builders.length < 2 && harvesters.length > 0 && upgraders.length > 0) {
+    if (builders.length < 2 && harvesters.length > 1 && upgraders.length > 1) {
         var newName = "Builder" + Game.time;
         console.log("Spawning new upgrader:" + newName);
         Game.spawns["Spawn1"].spawnCreep(

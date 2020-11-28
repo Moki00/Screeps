@@ -14,6 +14,7 @@ Game.creeps["Harvester1"].memory.role = "harvester";
 
 //change memory
 Game.creeps["Harvester1"].memory.role = "upgrader";
+Game.creeps["Builder23536633"].memory.role = "upgrader";
 
 //can build Big Creep with 550 energy in spawn and extensions
 Game.spawns["Spawn1"].spawnCreep(
