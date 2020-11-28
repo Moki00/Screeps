@@ -63,7 +63,7 @@ module.exports.loop = function () {
     //#2 make an Upgrader
     if (
         upgraders.length < 1 ||
-        (upgraders.length < 2 && harvesters.length > 0 && builders.length > 0)
+        (upgraders.length < 2 && harvesters.length > 0 && builders.length > 1)
     ) {
         var newName = "Upgrader" + Game.time;
         console.log("Spawning new upgrader:" + newName);
