@@ -1,15 +1,19 @@
 //spawn
-Game.spawns["Spawn1"].spawnCreep([WORK, CARRY, MOVE], "Harvester1");
-Game.spawns["Spawn1"].spawnCreep([WORK, CARRY, MOVE], "Upgrader1");
-
-//memory
-Game.creeps["Harvester1"].memory.role = "harvester";
-Game.creeps["Upgrader1"].memory.role = "upgrader";
-
-//builder
+Game.spawns["Spawn1"].spawnCreep([WORK, WORK, CARRY, MOVE], "Harvester1", {
+    memory: { role: "harvester" },
+});
+Game.spawns["Spawn1"].spawnCreep([WORK, CARRY, MOVE], "Upgrader1", {
+    memory: { role: "upgrader" },
+});
 Game.spawns["Spawn1"].spawnCreep([WORK, CARRY, MOVE], "Builder1", {
     memory: { role: "builder" },
 });
+
+//basic memory
+Game.creeps["Harvester1"].memory.role = "harvester";
+
+//change memory
+Game.creeps["Harvester1"].memory.role = "upgrader";
 
 //can build Big Creep with 550 energy in spawn and extensions
 Game.spawns["Spawn1"].spawnCreep(
