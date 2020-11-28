@@ -73,7 +73,7 @@ module.exports.loop = function () {
     //#3 make a Builder
     if (builders.length < 2 && harvesters.length > 0 && upgraders.length > 0) {
         var newName = "Builder" + Game.time;
-        console.log("Spawning new upgrader:" + newName);
+        console.log("Spawning new Builder:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
             [WORK, WORK, CARRY, MOVE], //100*2+50*2=300
             newName,
