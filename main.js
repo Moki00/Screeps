@@ -52,7 +52,7 @@ module.exports.loop = function () {
         var newName = "Harvester" + Game.time;
         console.log("Spawning new harvester:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, CARRY, CARRY, MOVE], //100*2+50*3=350
+            [WORK, WORK, CARRY, CARRY, MOVE, MOVE], //100*2+50*4=400
             newName,
             {
                 memory: { role: "harvester" },
@@ -68,7 +68,7 @@ module.exports.loop = function () {
         var newName = "Upgrader" + Game.time;
         console.log("Spawning new upgrader:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, CARRY, CARRY, MOVE], //100*2+50*3=350
+            [WORK, WORK, CARRY, CARRY, MOVE, MOVE], //100*2+50*4=400
             newName,
             {
                 memory: { role: "upgrader" },
@@ -84,7 +84,7 @@ module.exports.loop = function () {
         var newName = "Builder" + Game.time;
         console.log("Spawning new upgrader:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, CARRY, CARRY, MOVE], //100*2+50*3=350
+            [WORK, WORK, CARRY, CARRY, MOVE, MOVE], //100*2+50*4=400
             newName,
             {
                 memory: { role: "builder" },
