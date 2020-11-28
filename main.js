@@ -14,9 +14,7 @@ module.exports.loop = function () {
     }
 
     let energez = Game.rooms.W1S39.energyAvailable;
-    console.log(
-        'Room "' + Game.room.W1S39 + '" has ' + energez + " energezzzz"
-    );
+    console.log('Room "' + Game.room + '" has ' + energez + " energezzzz");
 
     // const containersWithEnergy = room.find(FIND_STRUCTURES, {
     //     filter: (i) =>
