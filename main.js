@@ -3,12 +3,6 @@ var roleUpgrader = require("role.upgrader");
 var roleBuilder = require("role.builder");
 
 module.exports.loop = function () {
-    //console.log Current status of energy and creeps
-    for (var name in Game.rooms) {
-        let energez = Game.rooms[name].energyAvailable;
-        console.log('Room "' + name + '" has ' + energez + " energezzzz");
-    }
-
     //clear memory of the dead
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {
@@ -65,7 +59,12 @@ module.exports.loop = function () {
     ) {
         var newName = "Upgrader" + Game.time;
         console.log("Spawning new upgrader:" + newName);
-        let energez = Game.rooms[name].energyAvailable;
+
+        //console.log Current status of energy and creeps
+        for (var name in Game.rooms) {
+            let energez = Game.rooms[name].energyAvailable;
+            console.log('Room "' + name + '" has ' + energez + " energezzzz");
+        }
 
         if (energez > 399) {
             Game.spawns["Spawn1"].spawnCreep(
@@ -105,7 +104,11 @@ module.exports.loop = function () {
     ) {
         var newName = "Builder" + Game.time;
         console.log("Spawning new upgrader:" + newName);
-        let energez = Game.rooms[name].energyAvailable;
+        //console.log Current status of energy and creeps
+        for (var name in Game.rooms) {
+            let energez = Game.rooms[name].energyAvailable;
+            console.log('Room "' + name + '" has ' + energez + " energezzzz");
+        }
 
         if (energez > 499) {
             Game.spawns["Spawn1"].spawnCreep(
