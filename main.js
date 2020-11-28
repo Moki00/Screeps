@@ -13,8 +13,8 @@ module.exports.loop = function () {
         );
     }
 
-    let energez = Game.rooms.W1S39.energyAvailable;
-    console.log('Room "' + Game.room + '" has ' + energez + " energezzzz");
+    // let energez = Game.rooms.W1S39.energyAvailable;
+    // console.log('Room "' + Game.room + '" has ' + energez + " energezzzz");
 
     // const containersWithEnergy = room.find(FIND_STRUCTURES, {
     //     filter: (i) =>
@@ -31,8 +31,7 @@ module.exports.loop = function () {
     }
 
     //set variable for creeps, and console.log quantity
-    //Creeps that harvest energy
-    var harvesters = _.filter(
+    let harvesters = _.filter(
         Game.creeps,
         (creep) => creep.memory.role == "harvester"
     );
@@ -56,8 +55,8 @@ module.exports.loop = function () {
     if (
         harvesters.length < 1 ||
         (harvesters.length < 2 &&
-            upgraders.length > 0 &&
-            builders.length > 0) ||
+            upgraders.length >= 1 &&
+            builders.length >= 1) ||
         (harvesters.length < 3 && upgraders.length > 2 && builders.length > 2)
     ) {
         var newName = "Harvester" + Game.time;
@@ -90,7 +89,11 @@ module.exports.loop = function () {
     }
 
     //#3 make a Builder
-    if (builders.length < 1 && harvesters.length > 0 && upgraders.length > 0) {
+    if (
+        builders.length < 1 &&
+        harvesters.length >= 1 &&
+        upgraders.length >= 1
+    ) {
         var newName = "Builder" + Game.time;
         console.log("Spawning new builder:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
