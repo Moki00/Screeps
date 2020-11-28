@@ -3,20 +3,10 @@ var roleUpgrader = require("role.upgrader");
 var roleBuilder = require("role.builder");
 
 module.exports.loop = function () {
+    //console.log Current status of energy and creeps
     for (var name in Game.rooms) {
         let energez = Game.rooms[name].energyAvailable;
         console.log('Room "' + name + '" has ' + energez + " energezzzz");
-    }
-
-    //console.log Current status of energy and creeps
-    for (var name in Game.rooms) {
-        console.log(
-            'Room "' +
-                name +
-                '" has ' +
-                Game.rooms[name].energyAvailable +
-                " energy"
-        );
     }
 
     //clear memory of the dead
