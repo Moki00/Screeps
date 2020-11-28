@@ -13,6 +13,9 @@ module.exports.loop = function () {
         );
     }
 
+    let energez = Game.rooms.W1S39.energyAvailable;
+    console.log('Room "' + Game.room.name + '" has ' + energez + " energezzzz");
+
     //clear memory of the dead
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {
@@ -146,9 +149,6 @@ module.exports.loop = function () {
     //     var newName = "Builder" + Game.time;
     //     console.log("Spawning new upgrader:" + newName);
     //     //console.log Current status of energy and creeps
-
-    let energez = Game.rooms.W1S39.energyAvailable;
-    console.log('Room "' + name + '" has ' + energez + " energezzzz");
 
     //     if (energez > 499) {
     //         Game.spawns["Spawn1"].spawnCreep(
