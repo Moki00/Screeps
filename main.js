@@ -59,22 +59,9 @@ module.exports.loop = function () {
     }
 
     //#2 make an Upgrader
-    if (upgraders.length < 1 && harvesters.length > 0) {
-        var newName = "Upgrader" + Game.time;
-        console.log("Spawning new upgrader:" + newName);
-        Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, CARRY, MOVE, MOVE], //100*2+50*3=350
-            newName,
-            {
-                memory: { role: "upgrader" },
-            }
-        );
-    }
-
-    //#2 make an Upgrader
     if (
-        upgraders.length < 1 ||
-        (upgraders.length < 2 && harvesters.length > 0 && builders.length > 1)
+        (upgraders.length < 1 && harvesters.length > 0) ||
+        (upgraders.length < 2 && harvesters.length > 0 && builders.length > 0)
     ) {
         var newName = "Upgrader" + Game.time;
         console.log("Spawning new upgrader:" + newName);
@@ -107,67 +94,58 @@ module.exports.loop = function () {
     }
 
     //#3 make a Builder
-    if (builders.length < 2 && harvesters.length > 1 && upgraders.length > 1) {
+    if (
+        (builders.length < 1 &&
+            harvesters.length > 0 &&
+            upgraders.length > 0) ||
+        (builders.length < 2 &&
+            upgraders.length > 1 &&
+            harvesters.length > 99999)
+    ) {
         var newName = "Builder" + Game.time;
-        console.log("Spawning new Builder:" + newName);
-        Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, CARRY, MOVE], //100*2+50*2=300
-            newName,
-            {
-                memory: { role: "builder" },
-            }
-        );
+        console.log("Spawning new upgrader:" + newName);
+        if (energez > 499) {
+            Game.spawns["Spawn1"].spawnCreep(
+                [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], //100*2+50*6=500
+                newName,
+                {
+                    memory: { role: "builder" },
+                }
+            );
+        } else if (energez > 349) {
+            Game.spawns["Spawn1"].spawnCreep(
+                [WORK, WORK, CARRY, MOVE, MOVE], //100*2+50*2=350
+                newName,
+                {
+                    memory: { role: "builder" },
+                }
+            );
+        } else if (energez > 299) {
+            Game.spawns["Spawn1"].spawnCreep(
+                [WORK, WORK, CARRY, MOVE], //100*2+50*2=300
+                newName,
+                {
+                    memory: { role: "builder" },
+                }
+            );
+        } else if (energez > 249) {
+            Game.spawns["Spawn1"].spawnCreep(
+                [WORK, CARRY, MOVE, MOVE], //100+50*3=250
+                newName,
+                {
+                    memory: { role: "builder" },
+                }
+            );
+        } else {
+            Game.spawns["Spawn1"].spawnCreep(
+                [WORK, CARRY, MOVE], //100+50*2=200
+                newName,
+                {
+                    memory: { role: "builder" },
+                }
+            );
+        }
     }
-
-    // //#3 make a Builder
-    // if (
-    //     builders.length < 1 ||
-    //     (builders.length < 2 && upgraders.length > 0 && harvesters.length > 0)
-    // ) {
-    //     var newName = "Builder" + Game.time;
-    //     console.log("Spawning new upgrader:" + newName);
-    //     if (Game.rooms[name].energyAvailable > 399) {
-    //         Game.spawns["Spawn1"].spawnCreep(
-    //             [WORK, WORK, CARRY, CARRY, MOVE, MOVE], //100*2+50*4=400
-    //             newName,
-    //             {
-    //                 memory: { role: "builder" },
-    //             }
-    //         );
-    //     } else if (Game.rooms[name].energyAvailable > 299) {
-    //         Game.spawns["Spawn1"].spawnCreep(
-    //             [WORK, WORK, CARRY, MOVE, MOVE], //100*2+50*2=300
-    //             newName,
-    //             {
-    //                 memory: { role: "builder" },
-    //             }
-    //         );
-    //     } else if (Game.rooms[name].energyAvailable > 299) {
-    //         Game.spawns["Spawn1"].spawnCreep(
-    //             [WORK, WORK, CARRY, MOVE], //100*2+50*2=300
-    //             newName,
-    //             {
-    //                 memory: { role: "builder" },
-    //             }
-    //         );
-    //     } else if (Game.rooms[name].energyAvailable > 249) {
-    //         Game.spawns["Spawn1"].spawnCreep(
-    //             [WORK, CARRY, MOVE, MOVE], //100+50*3=250
-    //             newName,
-    //             {
-    //                 memory: { role: "builder" },
-    //             }
-    //         );
-    //     } else {
-    //         Game.spawns["Spawn1"].spawnCreep(
-    //             [WORK, CARRY, MOVE], //100+50*2=200
-    //             newName,
-    //             {
-    //                 memory: { role: "builder" },
-    //             }
-    //         );
-    //     }
-    // }
 
     //#4 make a Fighter-later...
 
