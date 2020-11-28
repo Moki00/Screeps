@@ -13,8 +13,8 @@ module.exports.loop = function () {
         );
     }
 
-    let energez = Game.rooms.W1S39.energyAvailable;
-    console.log('Room "' + Game.room.name + '" has ' + energez + " energezzzz");
+    // let energez = Game.rooms.W1S39.energyAvailable;
+    // console.log('Room "' + Game.room.name + '" has ' + energez + " energezzzz");
 
     //clear memory of the dead
     for (var name in Memory.creeps) {
