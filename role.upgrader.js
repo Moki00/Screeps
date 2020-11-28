@@ -1,7 +1,8 @@
 var roleUpgrader = {
     run: function (creep) {
-        if (creep.memory.upgrading && creep.carry.energy == 0) {
+        if (creep.memory.upgrading && creep.store[RESOURCE_ENERGY] == 0) {
             creep.memory.upgrading = false;
+            creep.say("🔄 harvest");
         }
 
         if (
@@ -9,12 +10,13 @@ var roleUpgrader = {
             creep.carry.energy == creep.carryCapacity
         ) {
             creep.memory.upgrading = true;
+            creep.say("⚡ upgrade");
         }
 
         if (!creep.memory.upgrading) {
             var sources = creep.room.find(FIND_SOURCES);
-            if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[1], {
+            if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+                creep.moveTo(sources[0], {
                     visualizePathStyle: { stroke: "#ffffff" },
                 });
             }
