@@ -65,6 +65,7 @@ module.exports.loop = function () {
     ) {
         var newName = "Upgrader" + Game.time;
         console.log("Spawning new upgrader:" + newName);
+        let energez = Game.rooms[name].energyAvailable;
 
         if (energez > 399) {
             Game.spawns["Spawn1"].spawnCreep(
@@ -104,6 +105,8 @@ module.exports.loop = function () {
     ) {
         var newName = "Builder" + Game.time;
         console.log("Spawning new upgrader:" + newName);
+        let energez = Game.rooms[name].energyAvailable;
+
         if (energez > 499) {
             Game.spawns["Spawn1"].spawnCreep(
                 [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], //100*2+50*6=500
