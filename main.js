@@ -61,11 +61,14 @@ module.exports.loop = function () {
     }
 
     //#2 make an Upgrader
-    if (upgraders.length < 1 && harvesters.length > 0) {
+    if (
+        upgraders.length < 1 ||
+        (upgraders.length < 2 && harvesters.length > 0 && builders.length > 0)
+    ) {
         var newName = "Upgrader" + Game.time;
         console.log("Spawning new upgrader:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, CARRY, MOVE, MOVE], //100*2+50*3=350
+            [WORK, WORK, CARRY, CARRY, MOVE], //100*2+50*3=350
             newName,
             {
                 memory: { role: "upgrader" },
@@ -74,11 +77,14 @@ module.exports.loop = function () {
     }
 
     //#3 make a Builder
-    if (builders.length < 2 && harvesters.length > 0 && upgraders.length > 0) {
+    if (
+        builders.length < 1 ||
+        (builders.length < 2 && upgraders.length > 0 && harvesters.length > 0)
+    ) {
         var newName = "Builder" + Game.time;
         console.log("Spawning new upgrader:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            [WORK, CARRY, CARRY, MOVE, MOVE, MOVE], //100+50*5=350
+            [WORK, WORK, CARRY, CARRY, MOVE], //100*2+50*3=350
             newName,
             {
                 memory: { role: "builder" },
