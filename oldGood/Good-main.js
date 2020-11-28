@@ -48,27 +48,39 @@ module.exports.loop = function () {
     if (harvesters.length < 1) {
         var newName = "Harvester" + Game.time;
         console.log("Spawning new harvester:" + newName);
-        Game.spawns["Spawn1"].spawnCreep([WORK, CARRY, MOVE], newName, {
-            memory: { role: "harvester" },
-        });
+        Game.spawns["Spawn1"].spawnCreep(
+            [WORK, WORK, CARRY, CARRY, MOVE], //100*2+50*3=350
+            newName,
+            {
+                memory: { role: "harvester" },
+            }
+        );
     }
 
     //#2 make an Upgrader
     if (upgraders.length < 1 && harvesters.length > 0) {
         var newName = "Upgrader" + Game.time;
         console.log("Spawning new upgrader:" + newName);
-        Game.spawns["Spawn1"].spawnCreep([WORK, CARRY, MOVE], newName, {
-            memory: { role: "upgrader" },
-        });
+        Game.spawns["Spawn1"].spawnCreep(
+            [WORK, WORK, CARRY, CARRY, MOVE], //100*2+50*3=350
+            newName,
+            {
+                memory: { role: "upgrader" },
+            }
+        );
     }
 
     //#3 make a Builder
-    if (builders.length < 1 && harvesters.length > 0 && upgraders.length > 0) {
+    if (builders.length < 2 && harvesters.length > 0 && upgraders.length > 0) {
         var newName = "Builder" + Game.time;
         console.log("Spawning new upgrader:" + newName);
-        Game.spawns["Spawn1"].spawnCreep([WORK, CARRY, MOVE], newName, {
-            memory: { role: "builder" },
-        });
+        Game.spawns["Spawn1"].spawnCreep(
+            [WORK, CARRY, CARRY, MOVE, MOVE, MOVE], //100+50*5=350
+            newName,
+            {
+                memory: { role: "builder" },
+            }
+        );
     }
 
     //#4 make a Fighter-later...
