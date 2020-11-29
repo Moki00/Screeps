@@ -57,7 +57,9 @@ module.exports.loop = function () {
         (harvesters.length < 2 &&
             upgraders.length >= 1 &&
             builders.length >= 1) ||
-        (harvesters.length < 3 && upgraders.length > 2 && builders.length > 2)
+        (harvesters.length <= 2 &&
+            upgraders.length >= 2 &&
+            builders.length >= 2)
     ) {
         var newName = "Harvester" + Game.time;
         console.log("Spawning new harvester:" + newName);
@@ -75,6 +77,9 @@ module.exports.loop = function () {
         (upgraders.length < 1 && harvesters.length > 0) ||
         (upgraders.length <= 1 &&
             harvesters.length >= 1 &&
+            builders.length >= 1) ||
+        (upgraders.length <= 2 &&
+            harvesters.length >= 2 &&
             builders.length >= 1)
     ) {
         var newName = "Upgrader" + Game.time;

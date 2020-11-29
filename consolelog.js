@@ -31,3 +31,12 @@ Game.spawns["Spawn1"].room.controller.activateSafeMode();
 
 //build a Defense Tower
 Game.spawns["Spawn1"].room.createConstructionSite(23, 22, STRUCTURE_TOWER);
+
+console.log(this.room.energyAvailable);
+[room.name];
+Game.rooms[name].energyAvailable;
+console.log(Game[room.name].energyAvailable);
+console.log(stats.rooms[room.name].);
+stats.rooms[room.name];
+room.find(energyAvailable)
+    console.log(room.find(energyAvailable));
