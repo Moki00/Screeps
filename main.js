@@ -1,7 +1,7 @@
 var roleHarvester = require("role.harvester");
 var roleUpgrader = require("role.upgrader");
 var roleBuilder = require("role.builder");
-const roleFighter = require("./role.fighter");
+let roleFighter = require("role.fighter");
 
 module.exports.loop = function () {
     for (var name in Game.rooms) {

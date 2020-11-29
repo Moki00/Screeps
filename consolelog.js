@@ -2,10 +2,10 @@
 Game.spawns["Spawn1"].spawnCreep([WORK, WORK, CARRY, MOVE], "Harvester1", {
     memory: { role: "harvester" },
 });
-Game.spawns["Spawn1"].spawnCreep([WORK, CARRY, MOVE], "Upgrader1", {
+Game.spawns["Spawn1"].spawnCreep([WORK, WORK, CARRY, MOVE], "Upgrader83", {
     memory: { role: "upgrader" },
 });
-Game.spawns["Spawn1"].spawnCreep([WORK, CARRY, MOVE], "Builder1", {
+Game.spawns["Spawn1"].spawnCreep([WORK, WORK, CARRY, MOVE], "Builder1", {
     memory: { role: "builder" },
 });
 
@@ -35,8 +35,10 @@ Game.spawns["Spawn1"].room.createConstructionSite(23, 22, STRUCTURE_TOWER);
 console.log(this.room.energyAvailable);
 [room.name];
 Game.rooms[name].energyAvailable;
-console.log(Game[room.name].energyAvailable);
+console.log(energyAvailable);
 console.log(stats.rooms[room.name].);
 stats.rooms[room.name];
 room.find(energyAvailable)
     console.log(room.find(energyAvailable));
+
+    console.log( this.room.find(FIND_CONSTRUCTION_SITES));
