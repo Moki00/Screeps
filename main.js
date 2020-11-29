@@ -1,6 +1,7 @@
 var roleHarvester = require("role.harvester");
 var roleUpgrader = require("role.upgrader");
 var roleBuilder = require("role.builder");
+const roleFighter = require("./role.fighter");
 
 module.exports.loop = function () {
     for (var name in Game.rooms) {
@@ -75,17 +76,23 @@ module.exports.loop = function () {
     //#2 make an Upgrader
     if (
         (upgraders.length < 1 && harvesters.length > 0) ||
+        //2nd one
         (upgraders.length <= 1 &&
             harvesters.length >= 1 &&
             builders.length >= 1) ||
+        //3rd one
         (upgraders.length <= 2 &&
-            harvesters.length >= 2 &&
+            harvesters.length >= 1 &&
+            builders.length >= 1) ||
+        //4th one
+        (upgraders.length <= 3 &&
+            harvesters.length >= 1 &&
             builders.length >= 1)
     ) {
         var newName = "Upgrader" + Game.time;
         console.log("Spawning new upgrader:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, CARRY, MOVE], //100*2+50*2=300
+            [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
             newName,
             {
                 memory: { role: "upgrader" },
@@ -95,9 +102,12 @@ module.exports.loop = function () {
 
     //#3 make a Builder
     if (
-        builders.length < 1 &&
-        harvesters.length >= 1 &&
-        upgraders.length >= 1
+        (builders.length < 1 &&
+            harvesters.length >= 1 &&
+            upgraders.length >= 1) ||
+        (builders.length < 2 &&
+            harvesters.length >= 1 &&
+            upgraders.length >= 99)
     ) {
         var newName = "Builder" + Game.time;
         console.log("Spawning new builder:" + newName);
@@ -109,47 +119,6 @@ module.exports.loop = function () {
             }
         );
     }
-
-    // //#2 make an Upgrader
-    // if (
-    //     (upgraders.length < 1 && harvesters.length > 0) ||
-    //     (upgraders.length < 2 && harvesters.length > 0 && builders.length > 0)
-    // ) {
-    //     var newName = "Upgrader" + Game.time;
-    //     console.log("Spawning new upgrader:" + newName);
-
-    //     //console.log Current status of energy and creeps
-    //     for (var name in Game.rooms) {
-    //         let energez = Game.rooms[name].energyAvailable;
-    //         console.log('Room "' + name + '" has ' + energez + " energezzzz");
-    //     }
-
-    //     if (energez > 399) {
-    //         Game.spawns["Spawn1"].spawnCreep(
-    //             [WORK, WORK, CARRY, CARRY, MOVE, MOVE], //100*2+50*4=400
-    //             newName,
-    //             {
-    //                 memory: { role: "upgrader" },
-    //             }
-    //         );
-    //     } else if (energez > 299) {
-    //         Game.spawns["Spawn1"].spawnCreep(
-    //             [WORK, WORK, CARRY, MOVE], //100*2+50*2=300
-    //             newName,
-    //             {
-    //                 memory: { role: "upgrader" },
-    //             }
-    //         );
-    //     } else {
-    //         Game.spawns["Spawn1"].spawnCreep(
-    //             [WORK, CARRY, MOVE], //100+50*2=200
-    //             newName,
-    //             {
-    //                 memory: { role: "upgrader" },
-    //             }
-    //         );
-    //     }
-    // }
 
     // //#3 make a Builder
     // if (
@@ -207,7 +176,23 @@ module.exports.loop = function () {
     //     }
     // }
 
-    //#4 make a Fighter-later...
+    //#4 Fighters
+    // if (
+    //     fighters.length < 1 &&
+    //     harvesters.length >= 1 &&
+    //     upgraders.length >= 1 &&
+    //     builders.length >= 1
+    // ) {
+    //     var newName = "Fighter" + Game.time;
+    //     console.log("Spawning new fighter:" + newName);
+    //     Game.spawns["Spawn1"].spawnCreep(
+    //         [ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE], //80*2=160, +10*4=40, +50*2=100, =300
+    //         newName,
+    //         {
+    //             memory: { role: "fighter" },
+    //         }
+    //     );
+    // }
 
     //making creeps
     if (Game.spawns["Spawn1"].spawning) {
@@ -250,6 +235,9 @@ module.exports.loop = function () {
         }
         if (creep.memory.role == "builder") {
             roleBuilder.run(creep);
+        }
+        if (creep.memory.role == "fighter") {
+            roleFighter.run(creep);
         }
     }
 };
