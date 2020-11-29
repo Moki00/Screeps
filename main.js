@@ -62,7 +62,7 @@ module.exports.loop = function () {
     // Harvesters
     if (
         //Temporary hurry
-        harvesters.length < 2 ||
+        harvesters.length < 3 ||
         (harvesters.length < 2 &&
             upgraders.length >= 1 &&
             builders.length >= 1) ||
@@ -74,8 +74,8 @@ module.exports.loop = function () {
         console.log("Spawning new harvester:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
             // [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], //100*4+50*4=500
-            // [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
-            [WORK, WORK, CARRY, MOVE], //100*2+50*3=300
+            [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
+            // [WORK, WORK, CARRY, MOVE], //100*2+50*3=300
             // [WORK, CARRY, MOVE], //100*+50*2=200
             newName,
             {
@@ -112,12 +112,13 @@ module.exports.loop = function () {
         );
     }
 
-    //#3 Builder Creeps
+    //  Builders
     if (
-        (builders.length < 1 &&
+        (builders.length <= 0 &&
             harvesters.length >= 1 &&
             upgraders.length >= 1) ||
-        (builders.length < 2 &&
+        //Temp: only 1 builder for now
+        (builders.length <= 1 &&
             harvesters.length >= 1 &&
             upgraders.length >= 99)
     ) {
@@ -188,23 +189,23 @@ module.exports.loop = function () {
     //     }
     // }
 
-    // #4 Fighters
-    if (
-        fighters.length < 1 &&
-        harvesters.length >= 1 &&
-        upgraders.length >= 1 &&
-        builders.length >= 1
-    ) {
-        var newName = "Fighter" + Game.time;
-        console.log("Spawning new fighter:" + newName);
-        Game.spawns["Spawn1"].spawnCreep(
-            [ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE], //80*2=160, +10*4=40, +50*2=100, =300
-            newName,
-            {
-                memory: { role: "fighter" },
-            }
-        );
-    }
+    // // Fighters: Don't need yet
+    // if (
+    //     fighters.length < 1 &&
+    //     harvesters.length >= 1 &&
+    //     upgraders.length >= 1 &&
+    //     builders.length >= 1
+    // ) {
+    //     var newName = "Fighter" + Game.time;
+    //     console.log("Spawning new fighter:" + newName);
+    //     Game.spawns["Spawn1"].spawnCreep(
+    //         [ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE], //80*2=160, +10*4=40, +50*2=100, =300
+    //         newName,
+    //         {
+    //             memory: { role: "fighter" },
+    //         }
+    //     );
+    // }
 
     //making creeps
     if (Game.spawns["Spawn1"].spawning) {
