@@ -62,7 +62,7 @@ module.exports.loop = function () {
     // Harvesters
     if (
         //Temporary hurry
-        harvesters.length < 3 ||
+        harvesters.length < 1 ||
         (harvesters.length < 2 &&
             upgraders.length >= 1 &&
             builders.length >= 1) ||
@@ -73,8 +73,8 @@ module.exports.loop = function () {
         var newName = "Harvester" + Game.time;
         console.log("Spawning new harvester:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            // [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], //100*4+50*4=500
-            [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
+            [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], //100*4+50*4=500
+            // [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
             // [WORK, WORK, CARRY, MOVE], //100*2+50*3=300
             // [WORK, CARRY, MOVE], //100*+50*2=200
             newName,
