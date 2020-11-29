@@ -8,18 +8,18 @@ var roleFighter = {
                 creep.attack(target);
             }
         }
-        if ((creep.memory.fighting && target = alive)) {
-            creep.memory.fighting = true;
-            creep.say("Taste my creap!");
-        }
+        // if ((creep.memory.fighting && target = alive)) {
+        //     creep.memory.fighting = true;
+        //     creep.say("Taste my creap!");
+        // }
 
-        if (!creep.memory.fighting) {
-            creep.moveTo(creep.pos.30, creep.pos.17),
-            creep.say("Movin Out!"),
-                {
-                    visualizePathStyle: { stroke: "#ffffff" },
-                };
-        }
+        // if (!creep.memory.fighting) {
+        //     creep.moveTo(creep.pos.30, creep.pos.17),
+        //     creep.say("Movin Out!"),
+        //         {
+        //             visualizePathStyle: { stroke: "#ffffff" },
+        //         };
+        // }
     },
 };
 
