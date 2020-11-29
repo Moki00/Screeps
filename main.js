@@ -52,7 +52,14 @@ module.exports.loop = function () {
     );
     console.log("Builders: " + builders.length);
 
-    //#1 make Harvesters
+    //Creeps that fight
+    var fighters = _.filter(
+        Game.creeps,
+        (creep) => creep.memory.role == "fighter"
+    );
+    console.log("Fighters: " + fighters.length);
+
+    //#1 Harvesters Creeps
     if (
         harvesters.length < 1 ||
         (harvesters.length < 2 &&
@@ -74,7 +81,7 @@ module.exports.loop = function () {
         );
     }
 
-    //#2 make an Upgrader
+    //#2 Upgrader Creeps
     if (
         (upgraders.length < 1 && harvesters.length > 0) ||
         //2nd one
@@ -102,7 +109,7 @@ module.exports.loop = function () {
         );
     }
 
-    //#3 make a Builder
+    //#3 Builder Creeps
     if (
         (builders.length < 1 &&
             harvesters.length >= 1 &&
@@ -178,23 +185,23 @@ module.exports.loop = function () {
     //     }
     // }
 
-    //#4 Fighters
-    // if (
-    //     fighters.length < 1 &&
-    //     harvesters.length >= 1 &&
-    //     upgraders.length >= 1 &&
-    //     builders.length >= 1
-    // ) {
-    //     var newName = "Fighter" + Game.time;
-    //     console.log("Spawning new fighter:" + newName);
-    //     Game.spawns["Spawn1"].spawnCreep(
-    //         [ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE], //80*2=160, +10*4=40, +50*2=100, =300
-    //         newName,
-    //         {
-    //             memory: { role: "fighter" },
-    //         }
-    //     );
-    // }
+    // #4 Fighters
+    if (
+        fighters.length < 1 &&
+        harvesters.length >= 1 &&
+        upgraders.length >= 1 &&
+        builders.length >= 1
+    ) {
+        var newName = "Fighter" + Game.time;
+        console.log("Spawning new fighter:" + newName);
+        Game.spawns["Spawn1"].spawnCreep(
+            [ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE], //80*2=160, +10*4=40, +50*2=100, =300
+            newName,
+            {
+                memory: { role: "fighter" },
+            }
+        );
+    }
 
     //making creeps
     if (Game.spawns["Spawn1"].spawning) {
