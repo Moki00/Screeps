@@ -13,12 +13,12 @@ var roleFighter = {
         //     creep.say("Taste my creap!");
         // }
 
-        if (!creep.memory.fighting) {
-            creep.moveTo(x30, y17),
-                {
-                    visualizePathStyle: { stroke: "#ffffff" },
-                };
-        }
+        // if (!creep.memory.fighting) {
+        //     creep.moveTo(x30, y17),
+        //         {
+        //             visualizePathStyle: { stroke: "#ffffff" },
+        //         };
+        // }
     },
 };
 
