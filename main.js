@@ -69,13 +69,13 @@ module.exports.loop = function () {
             builders.length >= 1) ||
         //3rd
         (harvesters.length <= 3 &&
-            upgraders.length >= 2 &&
+            upgraders.length >= 1 &&
             builders.length >= 2)
     ) {
         var newName = "Harvester" + Game.time;
         console.log("Spawning new harvester:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], //100*4+50*4=500
+            [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], //100*3+50*4=500
             // [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
             // [WORK, WORK, CARRY, MOVE], //100*2+50*3=300
             // [WORK, CARRY, MOVE], //100*+50*2=200
@@ -86,13 +86,15 @@ module.exports.loop = function () {
         );
     }
 
-    //#2 Upgrader Creeps
+    //  Upgraders
     if (
-        (upgraders.length < 1 && harvesters.length > 0) ||
+        upgraders.length < 1 &&
+        harvesters.length > 0
         //2nd one
-        (upgraders.length <= 1 &&
-            harvesters.length >= 1 &&
-            builders.length >= 1)
+        // ||
+        // (upgraders.length <= 1 &&
+        //     harvesters.length >= 1 &&
+        //     builders.length >= 1)
         // //3rd one
         // ||
         // (upgraders.length <= 2 &&
@@ -108,6 +110,7 @@ module.exports.loop = function () {
         Game.spawns["Spawn1"].spawnCreep(
             // [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], //100*3+50*4=500
             [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
+            [WORK, CARRY, MOVE], //100+50*2=200
             newName,
             {
                 memory: { role: "upgrader" },
@@ -122,8 +125,8 @@ module.exports.loop = function () {
             upgraders.length >= 1) ||
         //Temp: only 1 builder for now
         (builders.length <= 1 &&
-            harvesters.length >= 1 &&
-            upgraders.length >= 99)
+            harvesters.length >= 2 &&
+            upgraders.length >= 1)
     ) {
         var newName = "Builder" + Game.time;
         console.log("Spawning new builder:" + newName);

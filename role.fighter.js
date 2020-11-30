@@ -6,6 +6,7 @@ var roleFighter = {
                 creep.moveTo(target);
             } else {
                 creep.attack(target);
+                creep.say("👊 Going in!");
             }
         }
         // if ((creep.memory.fighting && target = alive)) {
