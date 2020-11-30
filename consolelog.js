@@ -40,4 +40,4 @@ console.log(stats.rooms[room.name].);
 stats.rooms[room.name];
 room.find(energyAvailable)
 console.log(room.find(energyAvailable));
-console.log( this.room.find(FIND_CONSTRUCTION_SITES));
+console.log(creep.pos.findClosestByRange(FIND_STRUCTURES));

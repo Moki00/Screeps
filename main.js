@@ -6,11 +6,11 @@ let roleFighter = require("role.fighter");
 module.exports.loop = function () {
     for (var name in Game.rooms) {
         console.log(
-            'Room "' +
+            "Room " +
                 name +
-                '" has ' +
+                " has " +
                 Game.rooms[name].energyAvailable +
-                " energy"
+                " energy ⚡"
         );
     }
 
@@ -225,6 +225,7 @@ module.exports.loop = function () {
     }
 
     //Tower #1
+    var towerSearch = tower.pos.findClosestByRange(FIND_STRUCTURES);
     var tower = Game.getObjectById("5fc3c9d49b647bc0d4ef4762");
     if (tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(
