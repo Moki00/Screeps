@@ -35,7 +35,7 @@ Game.spawns["Spawn1"].room.createConstructionSite(23, 22, STRUCTURE_TOWER);
 console.log(this.room.energyAvailable);
 [room.name];
 Game.rooms[name].energyAvailable;
-console.log(energyAvailable);
+console.log(Game.creeps);
 console.log(stats.rooms[room.name].);
 stats.rooms[room.name];
 room.find(energyAvailable)
