@@ -110,7 +110,7 @@ module.exports.loop = function () {
         console.log("Spawning new upgrader:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
             // [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], //100*3+50*4=500
-            [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
+            // [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
             [WORK, CARRY, MOVE], //100+50*2=200
             newName,
             {
