@@ -1,5 +1,9 @@
 var roleHarvester = {
     run: function (creep) {
+        // if (time to live<99){
+        //     move to recycle area
+        // }
+
         if (creep.store.getFreeCapacity() > 0) {
             var sources = creep.room.find(FIND_SOURCES);
             if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
@@ -11,8 +15,10 @@ var roleHarvester = {
             var targets = creep.room.find(FIND_STRUCTURES, {
                 filter: (structure) => {
                     return (
-                        (structure.structureType == STRUCTURE_EXTENSION ||
-                            structure.structureType == STRUCTURE_SPAWN ||
+                        (structure.structureType == STRUCTURE_SPAWN ||
+                            // fill containers
+                            structure.structureType == STRUCTURE_CONTAINER ||
+                            structure.structureType == STRUCTURE_EXTENSION ||
                             structure.structureType == STRUCTURE_TOWER) &&
                         structure.store.getFreeCapacity(RESOURCE_ENERGY) > 0
                     );
@@ -24,7 +30,7 @@ var roleHarvester = {
                     ERR_NOT_IN_RANGE
                 ) {
                     creep.moveTo(targets[0], {
-                        visualizePathStyle: { stroke: "#ffffff" },
+                        visualizePathStyle: { stroke: "#fff111" },
                     });
                 }
             }

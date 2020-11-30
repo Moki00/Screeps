@@ -1,9 +1,9 @@
 var roleHarvester = require("role.harvester");
 var roleUpgrader = require("role.upgrader");
 var roleBuilder = require("role.builder");
+let roleFighter = require("role.fighter");
 
 module.exports.loop = function () {
-    //console.log Current status of energy and creeps
     for (var name in Game.rooms) {
         console.log(
             'Room "' +
@@ -14,6 +14,15 @@ module.exports.loop = function () {
         );
     }
 
+    // let energez = Game.rooms.W1S39.energyAvailable;
+    // console.log('Room "' + Game.room + '" has ' + energez + " energezzzz");
+
+    // const containersWithEnergy = room.find(FIND_STRUCTURES, {
+    //     filter: (i) =>
+    //         i.structureType == STRUCTURE_CONTAINER &&
+    //         i.store[RESOURCE_ENERGY] > 0,
+    // });
+
     //clear memory of the dead
     for (var name in Memory.creeps) {
         if (!Game.creeps[name]) {
@@ -23,8 +32,7 @@ module.exports.loop = function () {
     }
 
     //set variable for creeps, and console.log quantity
-    //Creeps that harvest energy
-    var harvesters = _.filter(
+    let harvesters = _.filter(
         Game.creeps,
         (creep) => creep.memory.role == "harvester"
     );
@@ -44,12 +52,33 @@ module.exports.loop = function () {
     );
     console.log("Builders: " + builders.length);
 
-    //#1 make Harvesters
-    if (harvesters.length < 1) {
+    //Creeps that fight
+    var fighters = _.filter(
+        Game.creeps,
+        (creep) => creep.memory.role == "fighter"
+    );
+    console.log("Fighters: " + fighters.length);
+
+    // Harvesters
+    if (
+        //
+        harvesters.length < 1 ||
+        //2nd
+        (harvesters.length <= 2 &&
+            upgraders.length >= 1 &&
+            builders.length >= 1) ||
+        //3rd
+        (harvesters.length <= 3 &&
+            upgraders.length >= 1 &&
+            builders.length >= 2)
+    ) {
         var newName = "Harvester" + Game.time;
         console.log("Spawning new harvester:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, CARRY, CARRY, MOVE], //100*2+50*3=350
+            [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], //100*3+50*4=500
+            // [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
+            // [WORK, WORK, CARRY, MOVE], //100*2+50*3=300
+            // [WORK, CARRY, MOVE], //100*+50*2=200
             newName,
             {
                 memory: { role: "harvester" },
@@ -57,12 +86,31 @@ module.exports.loop = function () {
         );
     }
 
-    //#2 make an Upgrader
-    if (upgraders.length < 1 && harvesters.length > 0) {
+    //  Upgraders
+    if (
+        upgraders.length < 1 &&
+        harvesters.length > 0
+        //2nd one
+        // ||
+        // (upgraders.length <= 1 &&
+        //     harvesters.length >= 1 &&
+        //     builders.length >= 1)
+        // //3rd one
+        // ||
+        // (upgraders.length <= 2 &&
+        //     harvesters.length >= 1 &&
+        //     builders.length >= 1) ||
+        // //4th one
+        // (upgraders.length <= 3 &&
+        //     harvesters.length >= 1 &&
+        //     builders.length >= 1)
+    ) {
         var newName = "Upgrader" + Game.time;
         console.log("Spawning new upgrader:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, CARRY, MOVE, MOVE], //100*2+50*3=350
+            // [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], //100*3+50*4=500
+            [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
+            [WORK, CARRY, MOVE], //100+50*2=200
             newName,
             {
                 memory: { role: "upgrader" },
@@ -70,12 +118,20 @@ module.exports.loop = function () {
         );
     }
 
-    //#3 make a Builder
-    if (builders.length < 2 && harvesters.length > 0 && upgraders.length > 0) {
+    //  Builders
+    if (
+        (builders.length <= 0 &&
+            harvesters.length >= 1 &&
+            upgraders.length >= 1) ||
+        //Temp: only 1 builder for now
+        (builders.length <= 1 &&
+            harvesters.length >= 2 &&
+            upgraders.length >= 1)
+    ) {
         var newName = "Builder" + Game.time;
-        console.log("Spawning new Builder:" + newName);
+        console.log("Spawning new builder:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
-            [WORK, WORK, CARRY, MOVE], //100*2+50*2=300
+            [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
             newName,
             {
                 memory: { role: "builder" },
@@ -83,7 +139,79 @@ module.exports.loop = function () {
         );
     }
 
-    //#4 make a Fighter-later...
+    // //#3 make a Builder
+    // if (
+    //     (builders.length < 1 &&
+    //         harvesters.length > 0 &&
+    //         upgraders.length > 0) ||
+    //     (builders.length < 2 &&
+    //         upgraders.length > 1 &&
+    //         harvesters.length > 99999)
+    // ) {
+    //     var newName = "Builder" + Game.time;
+    //     console.log("Spawning new upgrader:" + newName);
+    //     //console.log Current status of energy and creeps
+
+    //     if (energez > 499) {
+    //         Game.spawns["Spawn1"].spawnCreep(
+    //             [WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], //100*2+50*6=500
+    //             newName,
+    //             {
+    //                 memory: { role: "builder" },
+    //             }
+    //         );
+    //     } else if (energez > 349) {
+    //         Game.spawns["Spawn1"].spawnCreep(
+    //             [WORK, WORK, CARRY, MOVE, MOVE], //100*2+50*2=350
+    //             newName,
+    //             {
+    //                 memory: { role: "builder" },
+    //             }
+    //         );
+    //     } else if (energez > 299) {
+    //         Game.spawns["Spawn1"].spawnCreep(
+    //             [WORK, WORK, CARRY, MOVE], //100*2+50*2=300
+    //             newName,
+    //             {
+    //                 memory: { role: "builder" },
+    //             }
+    //         );
+    //     } else if (energez > 249) {
+    //         Game.spawns["Spawn1"].spawnCreep(
+    //             [WORK, CARRY, MOVE, MOVE], //100+50*3=250
+    //             newName,
+    //             {
+    //                 memory: { role: "builder" },
+    //             }
+    //         );
+    //     } else {
+    //         Game.spawns["Spawn1"].spawnCreep(
+    //             [WORK, CARRY, MOVE], //100+50*2=200
+    //             newName,
+    //             {
+    //                 memory: { role: "builder" },
+    //             }
+    //         );
+    //     }
+    // }
+
+    // Fighters
+    if (
+        fighters.length < 1 &&
+        harvesters.length >= 1 &&
+        upgraders.length >= 1 &&
+        builders.length >= 1
+    ) {
+        var newName = "Fighter" + Game.time;
+        console.log("Spawning new fighter:" + newName);
+        Game.spawns["Spawn1"].spawnCreep(
+            [ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE], //80*2=160, +10*4=40, +50*2=100, =300
+            newName,
+            {
+                memory: { role: "fighter" },
+            }
+        );
+    }
 
     //making creeps
     if (Game.spawns["Spawn1"].spawning) {
@@ -97,23 +225,23 @@ module.exports.loop = function () {
     }
 
     //Tower #1
-    //   var tower = Game.getObjectById("6f59ceb98400dea83a83c286");
-    //   if (tower) {
-    //     var closestDamagedStructure = tower.pos.findClosestByRange(
-    //       FIND_STRUCTURES,
-    //       {
-    //         filter: (structure) => structure.hits < structure.hitsMax,
-    //       }
-    //     );
-    //     if (closestDamagedStructure) {
-    //       tower.repair(closestDamagedStructure);
-    //     }
+    var tower = Game.getObjectById("5fc3c9d49b647bc0d4ef4762");
+    if (tower) {
+        var closestDamagedStructure = tower.pos.findClosestByRange(
+            FIND_STRUCTURES,
+            {
+                filter: (structure) => structure.hits < structure.hitsMax,
+            }
+        );
+        if (closestDamagedStructure) {
+            tower.repair(closestDamagedStructure);
+        }
 
-    //     var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-    //     if (closestHostile) {
-    //       tower.attack(closestHostile);
-    //     }
-    //   }
+        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if (closestHostile) {
+            tower.attack(closestHostile);
+        }
+    }
 
     //This pulls the code from other files by roles
     for (var name in Game.creeps) {
@@ -126,6 +254,9 @@ module.exports.loop = function () {
         }
         if (creep.memory.role == "builder") {
             roleBuilder.run(creep);
+        }
+        if (creep.memory.role == "fighter") {
+            roleFighter.run(creep);
         }
     }
 };
