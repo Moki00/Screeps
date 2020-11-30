@@ -62,13 +62,13 @@ module.exports.loop = function () {
     // Harvesters
     if (
         //
-        harvesters.length < 1 ||
+        harvesters.length <= 0 ||
         //2nd
-        (harvesters.length <= 2 &&
+        (harvesters.length <= 1 &&
             upgraders.length >= 1 &&
             builders.length >= 1) ||
         //3rd
-        (harvesters.length <= 3 &&
+        (harvesters.length <= 2 &&
             upgraders.length >= 1 &&
             builders.length >= 2)
     ) {
@@ -88,8 +88,8 @@ module.exports.loop = function () {
 
     //  Upgraders
     if (
-        upgraders.length < 1 &&
-        harvesters.length > 0
+        upgraders.length <= 0 &&
+        harvesters.length >= 1
         //2nd one
         // ||
         // (upgraders.length <= 1 &&
@@ -197,7 +197,7 @@ module.exports.loop = function () {
 
     // Fighters
     if (
-        fighters.length < 1 &&
+        fighters.length <= 0 &&
         harvesters.length >= 1 &&
         upgraders.length >= 1 &&
         builders.length >= 1
