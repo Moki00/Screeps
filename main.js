@@ -225,7 +225,7 @@ module.exports.loop = function () {
     }
 
     //Tower #1
-    var towerSearch = tower.pos.findClosestByRange(FIND_STRUCTURES);
+    // var towerSearch = tower.pos.findClosestByRange(FIND_STRUCTURES);
     var tower = Game.getObjectById("5fc3c9d49b647bc0d4ef4762");
     if (tower) {
         var closestDamagedStructure = tower.pos.findClosestByRange(
