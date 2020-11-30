@@ -189,23 +189,23 @@ module.exports.loop = function () {
     //     }
     // }
 
-    // // Fighters: Don't need yet
-    // if (
-    //     fighters.length < 1 &&
-    //     harvesters.length >= 1 &&
-    //     upgraders.length >= 1 &&
-    //     builders.length >= 1
-    // ) {
-    //     var newName = "Fighter" + Game.time;
-    //     console.log("Spawning new fighter:" + newName);
-    //     Game.spawns["Spawn1"].spawnCreep(
-    //         [ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE], //80*2=160, +10*4=40, +50*2=100, =300
-    //         newName,
-    //         {
-    //             memory: { role: "fighter" },
-    //         }
-    //     );
-    // }
+    // Fighters: Don't need yet
+    if (
+        fighters.length < 1 &&
+        harvesters.length >= 1 &&
+        upgraders.length >= 1 &&
+        builders.length >= 1
+    ) {
+        var newName = "Fighter" + Game.time;
+        console.log("Spawning new fighter:" + newName);
+        Game.spawns["Spawn1"].spawnCreep(
+            [ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE], //80*2=160, +10*4=40, +50*2=100, =300
+            newName,
+            {
+                memory: { role: "fighter" },
+            }
+        );
+    }
 
     //making creeps
     if (Game.spawns["Spawn1"].spawning) {
