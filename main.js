@@ -61,12 +61,14 @@ module.exports.loop = function () {
 
     // Harvesters
     if (
-        //Temporary hurry
+        //
         harvesters.length < 1 ||
-        (harvesters.length < 2 &&
+        //2nd
+        (harvesters.length <= 2 &&
             upgraders.length >= 1 &&
             builders.length >= 1) ||
-        (harvesters.length <= 2 &&
+        //3rd
+        (harvesters.length <= 3 &&
             upgraders.length >= 2 &&
             builders.length >= 2)
     ) {
@@ -90,15 +92,16 @@ module.exports.loop = function () {
         //2nd one
         (upgraders.length <= 1 &&
             harvesters.length >= 1 &&
-            builders.length >= 1) ||
-        //3rd one
-        (upgraders.length <= 2 &&
-            harvesters.length >= 1 &&
-            builders.length >= 1) ||
-        //4th one
-        (upgraders.length <= 3 &&
-            harvesters.length >= 1 &&
             builders.length >= 1)
+        // //3rd one
+        // ||
+        // (upgraders.length <= 2 &&
+        //     harvesters.length >= 1 &&
+        //     builders.length >= 1) ||
+        // //4th one
+        // (upgraders.length <= 3 &&
+        //     harvesters.length >= 1 &&
+        //     builders.length >= 1)
     ) {
         var newName = "Upgrader" + Game.time;
         console.log("Spawning new upgrader:" + newName);
@@ -189,7 +192,7 @@ module.exports.loop = function () {
     //     }
     // }
 
-    // Fighters: Don't need yet
+    // Fighters
     if (
         fighters.length < 1 &&
         harvesters.length >= 1 &&
@@ -219,23 +222,23 @@ module.exports.loop = function () {
     }
 
     //Tower #1
-    //   var tower = Game.getObjectById("6f59ceb98400dea83a83c286");
-    //   if (tower) {
-    //     var closestDamagedStructure = tower.pos.findClosestByRange(
-    //       FIND_STRUCTURES,
-    //       {
-    //         filter: (structure) => structure.hits < structure.hitsMax,
-    //       }
-    //     );
-    //     if (closestDamagedStructure) {
-    //       tower.repair(closestDamagedStructure);
-    //     }
+    var tower = Game.getObjectById("5fc3c9d49b647bc0d4ef4762");
+    if (tower) {
+        var closestDamagedStructure = tower.pos.findClosestByRange(
+            FIND_STRUCTURES,
+            {
+                filter: (structure) => structure.hits < structure.hitsMax,
+            }
+        );
+        if (closestDamagedStructure) {
+            tower.repair(closestDamagedStructure);
+        }
 
-    //     var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
-    //     if (closestHostile) {
-    //       tower.attack(closestHostile);
-    //     }
-    //   }
+        var closestHostile = tower.pos.findClosestByRange(FIND_HOSTILE_CREEPS);
+        if (closestHostile) {
+            tower.attack(closestHostile);
+        }
+    }
 
     //This pulls the code from other files by roles
     for (var name in Game.creeps) {
