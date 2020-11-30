@@ -124,7 +124,7 @@ module.exports.loop = function () {
         (builders.length <= 0 &&
             harvesters.length >= 1 &&
             upgraders.length >= 1) ||
-        //Temp: only 1 builder for now
+        // 2nd
         (builders.length <= 1 &&
             harvesters.length >= 2 &&
             upgraders.length >= 1)
@@ -197,12 +197,7 @@ module.exports.loop = function () {
     // }
 
     // Fighters
-    if (
-        fighters.length <= 0 &&
-        harvesters.length >= 1 &&
-        upgraders.length >= 1 &&
-        builders.length >= 1
-    ) {
+    if (fighters.length <= 0 && harvesters.length >= 1) {
         var newName = "Fighter" + Game.time;
         console.log("Spawning new fighter:" + newName);
         Game.spawns["Spawn1"].spawnCreep(
