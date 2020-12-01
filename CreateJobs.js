@@ -610,7 +610,7 @@ const CreateJobs = {
                 );
                 //flag to control area
                 if (!existingTagFlag) {
-                    const tag = "楽しいね Let's have fun in " + gameRoom.name;
+                    const tag = "モキ Please be an ally to " + gameRoom.name;
                     if (
                         gameRoom.controller.sign &&
                         (gameRoom.controller.sign.text !== tag ||
@@ -713,7 +713,7 @@ const CreateJobs = {
                             RESOURCE_ENERGY
                         ) > Util.STORAGE_ENERGY_MEDIUM &&
                         gameRoom.controller.level < 8)) &&
-                gameRoom.find(FIND_CONSTRUCTION_SITES).length === 0 // if there are any constructions - try to fokus finishing them first
+                gameRoom.find(FIND_CONSTRUCTION_SITES).length === 0 // if construction - focus finishing them first
             ) {
                 AddJob(
                     roomJobs,
