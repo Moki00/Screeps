@@ -1,5 +1,4 @@
 const Util = {
-
     TERMINAL_TARGET_RESOURCE: 3000, // if over target - terminal should send to another owned room that has under the target
     TERMINAL_TARGET_ENERGY: 30000,
     TERMINAL_EMPTY_RESOURCE: 20000, // if terminal has over TERMINAL_EMPTY_RESOURCE then it must try and empty it to storage
@@ -49,9 +48,11 @@ const Util = {
     GAME_TIME_MODULO_7: 216000,
 
     ErrorLog: function (functionParentName, functionName, message) {
-        const messageId = functionParentName + ' ' + functionName;
-        console.log('!!----------------------------------------------------------------------!!');
-        console.log('!!ERROR!! ' + messageId + ' | ' + message);
+        const messageId = functionParentName + " " + functionName;
+        console.log(
+            "!!----------------------------------------------------------------------!!"
+        );
+        console.log("!!ERROR!! " + messageId + " | " + message);
         if (!Memory.ErrorLog) {
             Memory.ErrorLog = {};
         }
@@ -61,14 +62,17 @@ const Util = {
         } else if (!Memory.ErrorLog[messageId][message]) {
             Memory.ErrorLog[messageId][message] = 1;
         } else {
-            Memory.ErrorLog[messageId][message] = Memory.ErrorLog[messageId][message] + 1;
+            Memory.ErrorLog[messageId][message] =
+                Memory.ErrorLog[messageId][message] + 1;
         }
     },
 
     InfoLog: function (functionParentName, functionName, message) {
-        const messageId = functionParentName + ' ' + functionName;
-        console.log('--------------------------------------------------------------------------');
-        console.log('--INFO-- ' + messageId + ' | ' + message);
+        const messageId = functionParentName + " " + functionName;
+        console.log(
+            "--------------------------------------------------------------------------"
+        );
+        console.log("--INFO-- " + messageId + " | " + message);
         if (!Memory.InfoLog) {
             Memory.InfoLog = {};
         }
@@ -78,20 +82,29 @@ const Util = {
         } else if (!Memory.InfoLog[messageId][message]) {
             Memory.InfoLog[messageId][message] = 1;
         } else {
-            Memory.InfoLog[messageId][message] = Memory.InfoLog[messageId][message] + 1;
+            Memory.InfoLog[messageId][message] =
+                Memory.InfoLog[messageId][message] + 1;
         }
     },
 
     Info: function (functionParentName, functionName, message) {
-        console.log(functionParentName + ' ' + functionName + ' | ' + message);
+        console.log(functionParentName + " " + functionName + " | " + message);
     },
 
     Warning: function (functionParentName, functionName, message) {
-        console.log('--WARNING-- ' + functionParentName + ' ' + functionName + ' | ' + message);
+        console.log(
+            "--WARNING-- " +
+                functionParentName +
+                " " +
+                functionName +
+                " | " +
+                message
+        );
     },
 
     /**@return {number}*/
-    FreeSpaces: function (pos) { // get the number of free spaces around a pos
+    FreeSpaces: function (pos) {
+        // get the number of free spaces around a pos
         let freeSpaces = 0;
         const terrain = Game.map.getRoomTerrain(pos.roomName);
         for (let x = pos.x - 1; x <= pos.x + 1; x++) {
@@ -107,12 +120,19 @@ const Util = {
 
     DeleteJob: function (job, jobKey, roomName) {
         // this.Info('Util', 'DeleteJob', 'job deleted ' + jobKey);
-        if (Memory.MemRooms[roomName] && job.JobType === this.FLAG_JOB && job.CreepType !== 'T' && job.CreepType !== 'B') {
+        if (
+            Memory.MemRooms[roomName] &&
+            job.JobType === this.FLAG_JOB &&
+            job.CreepType !== "T" &&
+            job.CreepType !== "B"
+        ) {
             // if job is a flag job then remember to decrease the number og allowed creeps in the room creeptype T and B should never be changed
-            if (Memory.MemRooms[roomName].MaxCreeps
-                && Memory.MemRooms[roomName].MaxCreeps[job.CreepType]
-                && Memory.MemRooms[roomName].MaxCreeps[job.CreepType].M
-                && Memory.MemRooms[roomName].MaxCreeps[job.CreepType].M > 0) {
+            if (
+                Memory.MemRooms[roomName].MaxCreeps &&
+                Memory.MemRooms[roomName].MaxCreeps[job.CreepType] &&
+                Memory.MemRooms[roomName].MaxCreeps[job.CreepType].M &&
+                Memory.MemRooms[roomName].MaxCreeps[job.CreepType].M > 0
+            ) {
                 Memory.MemRooms[roomName].MaxCreeps[job.CreepType].M -= 1;
             }
         }
@@ -130,12 +150,23 @@ const Util = {
             sourceNumber = gameRoom.find(FIND_SOURCES).length;
         }
         Memory.MemRooms[roomName] = {
-            'RoomLevel': level, // 0 to 8 or if there are NO controller then -1
-            'RoomJobs': jobs, // JobName - [JobName(x,y)] - user friendly, unique per room, name
-            'MaxCreeps': {}, // object that gives information on how many of each type of creep may be in the room and what creeps of that type is in the room
-            'SourceNumber': sourceNumber, // number of sources in room
+            RoomLevel: level, // 0 to 8 or if there are NO controller then -1
+            RoomJobs: jobs, // JobName - [JobName(x,y)] - user friendly, unique per room, name
+            MaxCreeps: {}, // object that gives information on how many of each type of creep may be in the room and what creeps of that type is in the room
+            SourceNumber: sourceNumber, // number of sources in room
         };
-        Util.Info('Util', 'CreateRoom', 'add new room ' + roomName + ' level ' + level + ' sourceNumber ' + sourceNumber + ' jobs ' + JSON.stringify(jobs))
+        Util.Info(
+            "Util",
+            "CreateRoom",
+            "add new room " +
+                roomName +
+                " level " +
+                level +
+                " sourceNumber " +
+                sourceNumber +
+                " jobs " +
+                JSON.stringify(jobs)
+        );
     },
 
     /**@return {number}*/
@@ -146,11 +177,12 @@ const Util = {
     /**@return {boolean}*/
     IsHighway: function (roomName) {
         const parsed = /^[WE]([0-9]+)[NS]([0-9]+)$/.exec(roomName);
-        return (parsed[1] % 10 === 0) || (parsed[2] % 10 === 0);
+        return parsed[1] % 10 === 0 || parsed[2] % 10 === 0;
     },
 
     /**@return {number}*/
-    GenerateOuterRoomPath: function (to, from) { // return length - saves path in Memory
+    GenerateOuterRoomPath: function (to, from) {
+        // return length - saves path in Memory
         if (!Memory.Paths) {
             Memory.Paths = {};
         }
@@ -158,16 +190,24 @@ const Util = {
         if (Memory.Paths[to] && Memory.Paths[to][from]) {
             shouldCalculate = false;
         }
-        if (shouldCalculate && Game.map.getRoomLinearDistance(to, from) > 15/*creep should not move that much!*/) {
+        if (
+            shouldCalculate &&
+            Game.map.getRoomLinearDistance(to, from) >
+                15 /*creep should not move that much!*/
+        ) {
             return -1; // do not calculate this route!
         }
-        if (shouldCalculate) { // Use `findRoute` to calculate a high-level plan for this path,
+        if (shouldCalculate) {
+            // Use `findRoute` to calculate a high-level plan for this path,
             // prioritizing highways and owned rooms
             const route = Game.map.findRoute(from, to, {
                 routeCallback(roomName) {
                     const isHighway = Util.IsHighway(roomName);
                     let isMyRoom = false;
-                    if (Game.rooms[roomName] && Game.rooms[roomName].controller) {
+                    if (
+                        Game.rooms[roomName] &&
+                        Game.rooms[roomName].controller
+                    ) {
                         if (Game.rooms[roomName].controller.my) {
                             isMyRoom = true;
                         }
@@ -177,22 +217,37 @@ const Util = {
                     } else {
                         return 6;
                     }
-                }
+                },
             });
             if (!Memory.Paths[to]) {
                 Memory.Paths[to] = {};
             }
             let lastRoom = from;
             if (route === ERR_NO_PATH) {
-                Util.Warning('Util', 'GenerateOuterRoomPath', 'Path can not be found! from ' + from + ' to ' + to);
+                Util.Warning(
+                    "Util",
+                    "GenerateOuterRoomPath",
+                    "Path can not be found! from " + from + " to " + to
+                );
                 return -1;
             } else {
                 for (const roomInRouteKey in route) {
                     const roomInRoute = route[roomInRouteKey];
                     Memory.Paths[to][lastRoom] = roomInRoute.room;
-                    lastRoom = roomInRoute.room
+                    lastRoom = roomInRoute.room;
                 }
-                Util.Info('Util', 'GenerateOuterRoomPath', 'new path length ' + route.length + ' from ' + from + ' to ' + to + ' paths ' + JSON.stringify(Memory.Paths[to]));
+                Util.Info(
+                    "Util",
+                    "GenerateOuterRoomPath",
+                    "new path length " +
+                        route.length +
+                        " from " +
+                        from +
+                        " to " +
+                        to +
+                        " paths " +
+                        JSON.stringify(Memory.Paths[to])
+                );
                 return route.length;
             }
         } else {
@@ -206,7 +261,18 @@ const Util = {
                     hasFoundDestination = true;
                 }
                 if (length > 50) {
-                    Util.ErrorLog('Util', 'GenerateOuterRoomPath', 'old path error! length ' + length + ' from ' + from + ' to ' + to + ' deleting path! paths ' + JSON.stringify(Memory.Paths[to]));
+                    Util.ErrorLog(
+                        "Util",
+                        "GenerateOuterRoomPath",
+                        "old path error! length " +
+                            length +
+                            " from " +
+                            from +
+                            " to " +
+                            to +
+                            " deleting path! paths " +
+                            JSON.stringify(Memory.Paths[to])
+                    );
                     delete Memory.Paths[to];
                     return -1; // do not calculate this route!
                 }
@@ -217,18 +283,38 @@ const Util = {
     },
 
     MissingSpawnNotification: function (objectPosition) {
-        if (Memory.MemRooms[objectPosition.roomName] && Memory.MemRooms[objectPosition.roomName].MissingSpawn !== Game.time) {
+        if (
+            Memory.MemRooms[objectPosition.roomName] &&
+            Memory.MemRooms[objectPosition.roomName].MissingSpawn !== Game.time
+        ) {
             const constructSpawnFlag = _.filter(Game.flags, function (flag) {
-                return flag.pos.roomName === objectPosition.roomName && flag.color === COLOR_GREEN && flag.secondaryColor === COLOR_GREY;
+                return (
+                    flag.pos.roomName === objectPosition.roomName &&
+                    flag.color === COLOR_GREEN &&
+                    flag.secondaryColor === COLOR_GREY
+                );
             })[0];
             if (!constructSpawnFlag) {
-                new RoomVisual(objectPosition.roomName).text('NO SPAWN!', objectPosition.x, objectPosition.y);
-                Util.Warning('Util', 'MissingSpawnNotification', objectPosition.roomName + ' no spawn flag found, add flag with primary color green and secondary color grey');
-                Game.map.visual.text('NO SPAWN FLAG!', new RoomPosition(25, 25, objectPosition.roomName), {
-                    color: '#ff0000',
-                    fontSize: 10,
-                    opacity: 1
-                });
+                new RoomVisual(objectPosition.roomName).text(
+                    "NO SPAWN!",
+                    objectPosition.x,
+                    objectPosition.y
+                );
+                Util.Warning(
+                    "Util",
+                    "MissingSpawnNotification",
+                    objectPosition.roomName +
+                        " no spawn flag found, add flag with primary color green and secondary color grey"
+                );
+                Game.map.visual.text(
+                    "NO SPAWN FLAG!",
+                    new RoomPosition(25, 25, objectPosition.roomName),
+                    {
+                        color: "#ff0000",
+                        fontSize: 10,
+                        opacity: 1,
+                    }
+                );
             }
             Memory.MemRooms[objectPosition.roomName].MissingSpawn = Game.time; // only notify once
         }
@@ -239,9 +325,11 @@ const Util = {
         if (!username) {
             const structure = _.find(Game.structures);
             const creep = _.find(Game.creeps);
-            username = (structure ? structure.owner.username : false) || (creep ? creep.owner.username : false);
+            username =
+                (structure ? structure.owner.username : false) ||
+                (creep ? creep.owner.username : false);
             Memory.Username = username;
-            Util.InfoLog('Util', 'GetUsername', 'username saved ' + username);
+            Util.InfoLog("Util", "GetUsername", "username saved " + username);
         }
         return username;
     },
@@ -250,25 +338,25 @@ const Util = {
     GetColorCodeFromColor: function (flagColor) {
         switch (flagColor) {
             case COLOR_RED:
-                return '#ff0000';
+                return "#ff0000";
             case COLOR_PURPLE:
-                return '#ff00ff';
+                return "#ff00ff";
             case COLOR_BLUE:
-                return '#0000ff';
+                return "#0000ff";
             case COLOR_CYAN:
-                return '#00ffff';
+                return "#00ffff";
             case COLOR_GREEN:
-                return '#00ff00';
+                return "#00ff00";
             case COLOR_YELLOW:
-                return '#ffff00';
+                return "#ffff00";
             case COLOR_ORANGE:
-                return '#ff8000';
+                return "#ff8000";
             case COLOR_BROWN:
-                return '#804000';
+                return "#804000";
             case COLOR_GREY:
-                return '#808080';
+                return "#808080";
             case COLOR_WHITE:
-                return '#ffffff';
+                return "#ffffff";
         }
     },
 
@@ -279,52 +367,63 @@ const Util = {
         }
         const hits = fortification.hits;
         const roomLevel = fortification.room.controller.level;
-        return (fortification.structureType === STRUCTURE_RAMPART || fortification.structureType === STRUCTURE_WALL) &&
-            (
-                // rich with energy
-                fortification.room.storage && fortification.room.storage.store.getUsedCapacity(RESOURCE_ENERGY) > Util.STORAGE_ENERGY_MEDIUM &&
-                (
-                    roomLevel === 4 && hits < 40000 ||
-                    roomLevel === 5 && hits < 80000 ||
-                    roomLevel === 6 && hits < 160000 ||
-                    roomLevel === 7 && hits < 320000 ||
-                    roomLevel === 8 && hits < 640000
-                ) ||
-
+        return (
+            (fortification.structureType === STRUCTURE_RAMPART ||
+                fortification.structureType === STRUCTURE_WALL) &&
+            // rich with energy
+            ((fortification.room.storage &&
+                fortification.room.storage.store.getUsedCapacity(
+                    RESOURCE_ENERGY
+                ) > Util.STORAGE_ENERGY_MEDIUM &&
+                ((roomLevel === 4 && hits < 40000) ||
+                    (roomLevel === 5 && hits < 80000) ||
+                    (roomLevel === 6 && hits < 160000) ||
+                    (roomLevel === 7 && hits < 320000) ||
+                    (roomLevel === 8 && hits < 640000))) ||
                 // very rich with energy
-                fortification.room.storage && fortification.room.storage.store.getUsedCapacity(RESOURCE_ENERGY) > Util.STORAGE_ENERGY_HIGH &&
-                (
-                    roomLevel === 4 && hits < 400000 ||
-                    roomLevel === 5 && hits < 800000 ||
-                    roomLevel === 6 && hits < 1600000 ||
-                    roomLevel === 7 && hits < 3200000 ||
-                    roomLevel === 8 && hits < fortification.hitsMax
-                ) ||
-
+                (fortification.room.storage &&
+                    fortification.room.storage.store.getUsedCapacity(
+                        RESOURCE_ENERGY
+                    ) > Util.STORAGE_ENERGY_HIGH &&
+                    ((roomLevel === 4 && hits < 400000) ||
+                        (roomLevel === 5 && hits < 800000) ||
+                        (roomLevel === 6 && hits < 1600000) ||
+                        (roomLevel === 7 && hits < 3200000) ||
+                        (roomLevel === 8 && hits < fortification.hitsMax))) ||
                 // badly damaged
-                roomLevel === 1 && hits < 500 ||
-                roomLevel === 2 && hits < 1000 ||
-                roomLevel === 3 && hits < 2000 ||
-                roomLevel === 4 && hits < 4000 ||
-                roomLevel === 5 && hits < 8000 ||
-                roomLevel === 6 && hits < 16000 ||
-                roomLevel === 7 && hits < 32000 ||
-                roomLevel === 8 && hits < 64000
-            );
+                (roomLevel === 1 && hits < 500) ||
+                (roomLevel === 2 && hits < 1000) ||
+                (roomLevel === 3 && hits < 2000) ||
+                (roomLevel === 4 && hits < 4000) ||
+                (roomLevel === 5 && hits < 8000) ||
+                (roomLevel === 6 && hits < 16000) ||
+                (roomLevel === 7 && hits < 32000) ||
+                (roomLevel === 8 && hits < 64000))
+        );
     },
 
     /**@return {boolean}*/
-    IsProductionChain: function (factory, resourceTypeNeeded, resourceTypeProduced, resourceBasic) {
-        return factory.room.storage.store.getUsedCapacity(resourceTypeNeeded) > 0
-            || factory.room.storage.store.getUsedCapacity(resourceTypeProduced) > 0
-            || factory.room.storage.store.getUsedCapacity(resourceBasic) > 0
-            || factory.room.terminal.store.getUsedCapacity(resourceTypeNeeded) > 0
-            || factory.room.terminal.store.getUsedCapacity(resourceTypeProduced) > 0
-            || factory.room.terminal.store.getUsedCapacity(resourceBasic) > 0
-            || factory.store.getUsedCapacity(resourceTypeNeeded) > 0
-            || factory.store.getUsedCapacity(resourceTypeProduced) > 0
-            || factory.store.getUsedCapacity(resourceBasic) > 0;
+    IsProductionChain: function (
+        factory,
+        resourceTypeNeeded,
+        resourceTypeProduced,
+        resourceBasic
+    ) {
+        return (
+            factory.room.storage.store.getUsedCapacity(resourceTypeNeeded) >
+                0 ||
+            factory.room.storage.store.getUsedCapacity(resourceTypeProduced) >
+                0 ||
+            factory.room.storage.store.getUsedCapacity(resourceBasic) > 0 ||
+            factory.room.terminal.store.getUsedCapacity(resourceTypeNeeded) >
+                0 ||
+            factory.room.terminal.store.getUsedCapacity(resourceTypeProduced) >
+                0 ||
+            factory.room.terminal.store.getUsedCapacity(resourceBasic) > 0 ||
+            factory.store.getUsedCapacity(resourceTypeNeeded) > 0 ||
+            factory.store.getUsedCapacity(resourceTypeProduced) > 0 ||
+            factory.store.getUsedCapacity(resourceBasic) > 0
+        );
     },
-
 };
 module.exports = Util;

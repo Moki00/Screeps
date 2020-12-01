@@ -1,32 +1,32 @@
 # Screeps 　スクリープス
 
-_Just playing for fun_
-楽しもう
+_Just playing for fun_。_楽しもう_
 
 **create jobs** - Game.memory.MemRooms で仕事を貯める
+。
 **assign jobs** - assign the jobs in each room, flag jobs may be occupied by creeps that originate from other rooms
+。
 **execute jobs** - do the actual action and keep doing the job until return code != 0
 
-遠い仕事を旗で
+遠い仕事を旗で Work far with flags
 
 ## スカウト　 Scouts
 
--   オレンジ + オレンジ: tag a controller with a scout - flag name is tag message
--   オレンジ + 黄色 for scout at pos
+-   オレンジ + オレンジ: コントローラにメッセージを張る Orange+Orange flag a controller to tag a message
+-   オレンジ + 黄色:　スカウトを Orange+yellow for scout
 
 ## 戦争　 Army
 
--   赤 + 赤: warrior at pos
--   赤 + 青: gunner at pos
--   赤 + 緑: medic at pos
+-   赤 + 赤: 侍 red+red warrior
+-   赤 + 青: 弓矢 red+blue gunner
+-   赤 + 緑: 医者 red+green medic
 
 ## 支配者　 Claimers
 
 -   緑 + 緑: claimer claim room on controller
 -   緑 + 黄色: reserve room
 -   緑 + オレンジ: claimer at pos
-
-    primary color 緑 and secondary color 灰色
+-   緑 + 灰色:　メイン
 
 **Summon Operator** in room
 
@@ -39,5 +39,5 @@ _Just playing for fun_
 **lab flag actions**
 
 -   primary color purple 紫
-    -   purple flag directly on lab, naming rules: GET-L-roomname = get lemergium from all rooms, BUY-L-roomname = get lemergium from all rooms or then buy it from the terminal
-    -   white flag directly on lab, naming rules: EMPTY-GH-roomname = create the mineral and allows it to be emptied from the nearby lab to this lab
+    -   purple 紫 flag directly on lab, naming rules: GET-L-roomname = get lemergium from all rooms, BUY-L-roomname = get lemergium from all rooms or then buy it from the terminal
+    -   white 白 flag directly on lab, naming rules: EMPTY-GH-roomname = create the mineral and allows it to be emptied from the nearby lab to this lab
