@@ -610,7 +610,7 @@ const CreateJobs = {
                 );
                 //flag to control area
                 if (!existingTagFlag) {
-                    const tag = "楽しいね Let's have fun!" + gameRoom.name;
+                    const tag = "楽しいね Let's have fun in " + gameRoom.name;
                     if (
                         gameRoom.controller.sign &&
                         (gameRoom.controller.sign.text !== tag ||
