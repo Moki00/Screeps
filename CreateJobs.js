@@ -157,11 +157,12 @@ const CreateJobs = {
                     } else {
                         notFound = true;
                     }
+                    // 緑の旗で支配！　GREEN FLAGS!! Claim the land!!
                 } else if (color === COLOR_GREEN) {
-                    // claimer actions
+                    // Green+Green = ClaimControllerJobs
                     if (secColor === COLOR_GREEN) {
-                        // claimer claim
                         jobs = ClaimControllerJobs(jobs, gameFlagKey, gameFlag);
+                        // Green+Yellow = ReserveRoom
                     } else if (secColor === COLOR_YELLOW) {
                         // claimer reserve
                         jobs = ReserveRoomJobs(jobs, gameFlagKey, gameFlag); // suggested name: Reserve room roomName
@@ -171,7 +172,7 @@ const CreateJobs = {
                             gameFlag
                         );
                     } else if (secColor === COLOR_GREY) {
-                        // construction of spawn
+                        // construction of spawn (construction 160)
                     } else {
                         notFound = true;
                     }

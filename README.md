@@ -14,6 +14,7 @@ _Just playing for fun_。_楽しもう_
 
 -   オレンジ + オレンジ: コントローラにメッセージを張る Orange+Orange flag a controller to tag a message
 -   オレンジ + 黄色:　スカウトを Orange+yellow for scout
+-   オレンジ + 灰色:　スカウトを Orange+Gray for Transporter to fetch Power (CreateJobs 53)
 
 ## 戦争　 Army
 
@@ -24,8 +25,8 @@ _Just playing for fun_。_楽しもう_
 ## 支配者　 Claimers
 
 -   緑 + 緑: コントローラに支配 Green+Green on controller to claim room
--   緑 + 灰色: コントローラに支配 Green+Gray to claim controller
--   緑 + 黄色: 部屋を支配する Green+Yellow to reserve room
+-   緑 + 灰色：巣を作る Green+Gray pos of new Spawn (construction 160)
+-   緑 + 黄色：部屋を支配する Green+Yellow to reserve room
 -   緑 + オレンジ: 支配者を移動 Green+Orange to put claimer at pos
 
 **Summon Operator** in room

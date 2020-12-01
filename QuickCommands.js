@@ -56,11 +56,14 @@ for (const flagKey in Game.flags) {
     console.log(flagKey + " " + JSON.stringify(flag));
 }
 
-console.log(Game.rooms["E35S29"].controller.owner);
+console.log(Game.map["W1N57"].controller.owner);
+console.log(Game.map.describeExits("W1N57"));
+console.log(Game.rooms["W2N57"].controller.owner);
+console.log(Game.rooms["W2N57"].controller.progress);
 
 Game.creeps["M1"].move(LEFT);
 
-console.log(Game.rooms["E28S29"].energyAvailable);
+console.log(Game.rooms["W1N57"].energyAvailable);
 
 console.log(
     "RESOURCE_ENERGY " +
