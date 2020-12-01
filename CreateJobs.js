@@ -610,7 +610,7 @@ const CreateJobs = {
                 );
                 //flag to control area
                 if (!existingTagFlag) {
-                    const tag = "モキ Please be an ally to " + gameRoom.name;
+                    const tag = "友よ Please be an ally to " + gameRoom.name;
                     if (
                         gameRoom.controller.sign &&
                         (gameRoom.controller.sign.text !== tag ||
