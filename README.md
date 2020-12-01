@@ -1,51 +1,35 @@
 # Screeps
 
-## Error codes
+**create jobs** - creates jobs that are placed in Game.memory.MemRooms
 
-https://screeps.fandom.com/wiki/Error_Constants
+**assign jobs** - assign the jobs in each room, flag jobs may be occupied by creeps that originate from other rooms
 
-```
-OK: 0
-ERR_NOT_OWNER: -1
-ERR_NO_PATH: -2
-ERR_NAME_EXISTS: -3
-ERR_BUSY: -4
-ERR_NOT_FOUND: -5
-ERR_NOT_ENOUGH_ENERGY: -6
-ERR_NOT_ENOUGH_RESOURCES: -6
-ERR_INVALID_TARGET: -7
-ERR_FULL: -8
-ERR_NOT_IN_RANGE: -9
-ERR_INVALID_ARGS: -10
-ERR_TIRED: -11
-ERR_NO_BODYPART: -12
-ERR_NOT_ENOUGH_EXTENSIONS: -6
-ERR_RCL_NOT_ENOUGH: -14
-ERR_GCL_NOT_ENOUGH: -15
-```
+**execute jobs** - do the actual action and keep doing the job until return code != 0
 
-## Structures
+**Create distant creep jobs** at a position by placing a flag
 
-```
-STRUCTURE_SPAWN: "spawn",
-STRUCTURE_EXTENSION: "extension",
-STRUCTURE_ROAD: "road",
-STRUCTURE_WALL: "constructedWall",
-STRUCTURE_RAMPART: "rampart",
-STRUCTURE_KEEPER_LAIR: "keeperLair",
-STRUCTURE_PORTAL: "portal",
-STRUCTURE_CONTROLLER: "controller",
-STRUCTURE_LINK: "link",
-STRUCTURE_STORAGE: "storage",
-STRUCTURE_TOWER: "tower",
-STRUCTURE_OBSERVER: "observer",
-STRUCTURE_POWER_BANK: "powerBank",
-STRUCTURE_POWER_SPAWN: "powerSpawn",
-STRUCTURE_EXTRACTOR: "extractor",
-STRUCTURE_LAB: "lab",
-STRUCTURE_TERMINAL: "terminal",
-STRUCTURE_CONTAINER: "container",
-STRUCTURE_NUKER: "nuker",
-STRUCTURE_FACTORY: "factory",
-STRUCTURE_INVADER_CORE: "invaderCore",
-```
+-   primary color orange - scout and pos actions and hallway action
+    -   Orange for tagging a controller with a scout - flag name is tag message
+    -   Yellow for scout at pos
+-   primary color red - aggressive jobs
+    -   red for warrior at pos
+    -   blue for gunner at pos
+    -   green for medic at pos
+-   primary color green - claimer actions
+    -   green for claimer claim room on controller
+    -   yellow for reserve room
+    -   orange claimer at pos
+
+**Summon Operator** in room
+
+-   primary blue secondary orange on powerspawn will spawn operater with flagname
+
+**Activate observer**
+
+-   primary orange secondary red placed on observer will activate the observer to scan surrounding rooms for power and deposits
+
+**lab flag actions**
+
+-   primary color purple
+    -   purple flag directly on lab, naming rules: GET-L-roomname = get lemergium from all rooms, BUY-L-roomname = get lemergium from all rooms or then buy it from the terminal
+    -   white flag directly on lab, naming rules: EMPTY-GH-roomname = create the mineral and allows it to be emptied from the nearby lab to this lab
