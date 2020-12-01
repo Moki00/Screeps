@@ -23,18 +23,18 @@ _Just playing for fun_。_楽しもう_
 
 ## 支配者　 Claimers
 
--   緑 + 緑: claimer claim room on controller
--   緑 + 黄色: reserve room
--   緑 + オレンジ: claimer at pos
--   緑 + 灰色:　メイン
+-   緑 + 緑: コントローラに支配 Green+Green on controller to claim room
+-   緑 + 灰色: コントローラに支配 Green+Gray to claim controller
+-   緑 + 黄色: 部屋を支配する Green+Yellow to reserve room
+-   緑 + オレンジ: 支配者を移動 Green+Orange to put claimer at pos
 
 **Summon Operator** in room
 
--   青 + オレンジ: on powerspawn will spawn operater with flagname
+-   青 + オレンジ: blue+orange on powerspawn will spawn operater with flagName
 
 **Activate observer**
 
--   オレンジ　 ⁺ 　赤 on observer will activate the observer to scan surrounding rooms for power and deposits
+-   オレンジ + 赤: orange+red on observer will activate the observer to scan surrounding rooms for power and deposits
 
 **lab flag actions**
 
