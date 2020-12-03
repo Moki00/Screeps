@@ -25,7 +25,7 @@ const CreateJobs = {
                 const secColor = gameFlag.secondaryColor;
                 let notFound = false;
                 if (color === COLOR_ORANGE) {
-                    // scout and pos actions and hallway action
+                    // Orange+Orange: scout and pos actions and hallway action
                     if (secColor === COLOR_ORANGE) {
                         // scout tag
                         jobs = CreateFlagJob(
@@ -36,7 +36,7 @@ const CreateJobs = {
                             "S"
                         );
                     } else if (secColor === COLOR_YELLOW) {
-                        // scout at pos
+                        // Orange+Yellow: scout at pos
                         jobs = CreateFlagJob(
                             jobs,
                             "ScoutPos",
@@ -111,10 +111,10 @@ const CreateJobs = {
                     } else {
                         notFound = true;
                     }
+                    // Red = War
                 } else if (color === COLOR_RED) {
-                    // aggressive jobs
+                    // Red+Red: Warrior
                     if (secColor === COLOR_RED) {
-                        // warrior at pos
                         jobs = CreateFlagJob(
                             jobs,
                             "GuardPos",
@@ -122,8 +122,8 @@ const CreateJobs = {
                             gameFlag,
                             "W"
                         );
+                        // Red+Blue: Gunner
                     } else if (secColor === COLOR_BLUE) {
-                        // gunner at pos
                         jobs = CreateFlagJob(
                             jobs,
                             "GuardGunPos",

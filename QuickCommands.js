@@ -60,6 +60,9 @@ console.log(Game.map["W1N57"].controller.owner);
 console.log(Game.map.describeExits("W1N57"));
 console.log(Game.rooms["W2N57"].controller.owner);
 console.log(Game.rooms["W2N57"].controller.progress);
+StructureController;
+console.log(Game.rooms["W2N57"].StructureController.progress);
+console.log(Game.map.describeExits("W1N57"));
 
 Game.creeps["M1"].move(LEFT);
 
