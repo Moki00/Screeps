@@ -1,3 +1,11 @@
+//spawn
+Game.spawns["Spawn1"].spawnCreep([WORK, WORK, CARRY, MOVE], "Builder1", {
+    memory: { role: "builder" },
+});
+Game.spawns["Spawn1"].spawnCreep([ATTACK, ATTACK, CARRY, MOVE], "W9", {
+    memory: { role: "Warrior" },
+});
+
 // reset　ゲームの初期化
 Memory.MemRooms = {};
 Memory.ErrorLog = undefined;
@@ -56,15 +64,18 @@ for (const flagKey in Game.flags) {
     console.log(flagKey + " " + JSON.stringify(flag));
 }
 
-console.log(Game.map["W1N57"].controller.owner);
-console.log(Game.map.describeExits("W1N57"));
-console.log(Game.rooms["W2N57"].controller.owner);
+console.log(Game.map.describeExits("W1N57")); //[object Object]
+console.log(Game.rooms["W2N57"].controller.owner); //[object Object]
 console.log(Game.rooms["W2N57"].controller.progress);
 StructureController;
 console.log(Game.rooms["W2N57"].StructureController.progress);
 console.log(Game.map.describeExits("W1N57"));
 
-Game.creeps["M1"].move(LEFT);
+console.log(Game.creeps["G2"].pos);
+
+for (let G2 in Game.creeps) {
+    Game.creeps[G2].moveTo(18, 17);
+}
 
 console.log(Game.rooms["W1N57"].energyAvailable);
 
