@@ -1,3 +1,15 @@
+console.log(Game.map.describeExits("W1N57")); //[object Object]
+console.log(Game.rooms["W2N57"].controller.owner); //[object Object]
+console.log(Game.rooms["W2N57"].controller.progress);
+console.log(Game.rooms["W2N57"].StructureController.progress);
+console.log(Game.map.describeExits("W1N57"));
+
+console.log(Game.creeps["G2"].pos);
+
+for (let G3 in Game.creeps) {
+    Game.creeps[G3].moveTo(18, 17);
+}
+
 //spawn
 Game.spawns["Spawn1"].spawnCreep([WORK, WORK, CARRY, MOVE], "Builder1", {
     memory: { role: "builder" },
@@ -62,19 +74,6 @@ for (const flagKey in Game.flags) {
 for (const flagKey in Game.flags) {
     const flag = Game.flags[flagKey];
     console.log(flagKey + " " + JSON.stringify(flag));
-}
-
-console.log(Game.map.describeExits("W1N57")); //[object Object]
-console.log(Game.rooms["W2N57"].controller.owner); //[object Object]
-console.log(Game.rooms["W2N57"].controller.progress);
-StructureController;
-console.log(Game.rooms["W2N57"].StructureController.progress);
-console.log(Game.map.describeExits("W1N57"));
-
-console.log(Game.creeps["G2"].pos);
-
-for (let G2 in Game.creeps) {
-    Game.creeps[G2].moveTo(18, 17);
 }
 
 console.log(Game.rooms["W1N57"].energyAvailable);
