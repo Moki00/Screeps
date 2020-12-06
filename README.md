@@ -1,10 +1,15 @@
 # Screeps 　スクリープス
 
-_Just playing for fun_。_楽しもう_
+_Started playing to learn; now playing to have fun and learn even more！_
+_最初は学ぶために始めた。今は楽しむしもっと学びたい！_
 
-**create jobs** - Game.memory.MemRooms で仕事を貯める
-。
-**assign jobs** - assign the jobs in each room, flag jobs may be occupied by creeps that originate from other rooms
+## create jobs
+
+**Game.memory.MemRooms で仕事を貯める**
+
+## assign jobs
+
+**assign the jobs in each room, flag jobs may be occupied by creeps that originate from other rooms**
 。
 **execute jobs** - do the actual action and keep doing the job until return code != 0
 
@@ -42,3 +47,6 @@ _Just playing for fun_。_楽しもう_
 -   primary color purple 紫
     -   purple 紫 flag directly on lab, naming rules: GET-L-roomname = get lemergium from all rooms, BUY-L-roomname = get lemergium from all rooms or then buy it from the terminal
     -   white 白 flag directly on lab, naming rules: EMPTY-GH-roomname = create the mineral and allows it to be emptied from the nearby lab to this lab
+
+**tips**
+Use branches to test and debug your temporary code and also do backups.
