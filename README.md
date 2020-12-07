@@ -29,7 +29,7 @@ _最初は学ぶために始めた。今は楽しむしもっと学びたい！_
 
 ## 支配者　 Claimers
 
--   緑 + 緑: コントローラに支配 Green+Green (controller to claim room)(broken, C1 suicides)
+-   緑 + 緑: コントローラに支配 Green+Green (controller to claim room)(C1 suicides if not enough GPU)
 -   緑 + 灰色：巣を作る Green+Gray pos of new Spawn (construction 160)
 -   緑 + 黄色：部屋を支配する Green+Yellow to reserve room
 -   緑 + オレンジ: 支配者を移動 Green+Orange (put claimer at pos)(flag color not found)
