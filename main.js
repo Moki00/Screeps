@@ -36,11 +36,11 @@ module.exports.loop = function () {
                             const foundCreeps = {};
                             for (const memRoomKey in Memory.MemRooms) {
                                 const memRoom = Memory.MemRooms[memRoomKey];
-                                delete memRoom.Links; // buildings maybe deleted 建物が消されたかも
-                                delete memRoom.FctrId; // buildings maybe deleted 建物が消されたかも
-                                delete memRoom.PowerSpawnId; // buildings maybe deleted 建物が消されたかも
-                                delete memRoom.TowerIds; // towers maybe deleted タワーが消されたかも
-                                delete memRoom.ObserverId; // observer maybe deleted　展望台が消されたかも
+                                delete memRoom.Links; // buildings maybe deleted 建物が消されるかも
+                                delete memRoom.FctrId; // buildings maybe deleted 建物が消されるかも
+                                delete memRoom.PowerSpawnId; // buildings maybe deleted 建物が消されるかも
+                                delete memRoom.TowerIds; // towers maybe deleted タワーが消されるかも
+                                delete memRoom.ObserverId; // observer maybe deleted　展望台が消されるかも
                                 delete memRoom.Built; // remove BuiltRoads - road maybe eroded 道が壊れたかも
                                 delete memRoom.MissingSpawn; // remove the missing spawn notification handler
                                 delete memRoom.IsReserved; // reserved room flag reset - room maybe not reserved
@@ -124,7 +124,7 @@ module.exports.loop = function () {
                             "Main",
                             "Lingering MaxCreeps found and removed " +
                                 creepKey +
-                                " in " +
+                                " in room: " +
                                 memRoomKey
                         );
                         // this bug might happen when there are an error somewhere in the code that prevents the normal creep memory cleanup
