@@ -10,7 +10,7 @@ let Util = require("Util");
 let Observers = require("Observers");
 let PowerCreeps = require("PowerCreeps");
 let Labs = require("Labs");
-let Constructions = require("Constructions");
+let Construction = require("Construction");
 
 module.exports.loop = function () {
   Controller();
@@ -25,7 +25,7 @@ module.exports.loop = function () {
         if (Game.time % Util.GAME_TIME_MODULO_4 === 0) {
           CreateJobs.run();
           if (Game.time % Util.GAME_TIME_MODULO_5 === 0) {
-            Constructions.run();
+            Construction.run();
             if (Game.time % Util.GAME_TIME_MODULO_6 === 0) {
               Util.Info(
                 "Main",
