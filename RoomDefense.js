@@ -1,4 +1,5 @@
 let Util = require("Util");
+
 const RoomDefense = {
   run: function (gameRoom) {
     let anyTowerActionLastTick = Memory.MemRooms[gameRoom.name].AnyTowerAction;
@@ -292,4 +293,5 @@ const RoomDefense = {
     }
   },
 };
+
 module.exports = RoomDefense;

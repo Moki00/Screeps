@@ -1,15 +1,19 @@
-onsole.log(Game.map.describeExits("W59S14")); //[object Object]
+console.log(Game.map.describeExits("W59S14")); //[object Object]
 console.log(Game.rooms["W59S14"].controller.owner); //[object Object]
 console.log(Game.rooms["W59S14"].controller.progress);
 console.log(Game.rooms["W59S14"].StructureController.progress);
 console.log(Game.map.describeExits("W59S14"));
-c;
 
+// where is a creep?
 console.log(Game.creeps["G2"].pos);
 
+// move to
 for (let G3 in Game.creeps) {
-  Game.creeps[G3].moveTo(18, 17);
+  Game.creeps[G3].moveTo(18, 23);
 }
+
+// move Left
+Game.creeps["T2"].move(LEFT);
 
 //spawn
 Game.spawns["Spawn1"].spawnCreep([WORK, WORK, CARRY, MOVE], "B1", {
@@ -54,8 +58,8 @@ Game.getObjectById("5d7ed54c708ec13c439c0193").send(
   3000,
   "E28S29"
 );
-Game.market.deal("5e00325c7072b2051bcdb880", 4000, "E29S31");
-console.log(JSON.stringify(Game.rooms["E29S31"].controller.owner));
+Game.market.deal("5e00325c7072b2051bcdb880", 4000, "W59S14");
+console.log(JSON.stringify(Game.rooms["W59S14"].controller.owner));
 
 console.log(JSON.stringify(Game.rooms["E29S28"].controller.owner));
 
@@ -117,8 +121,8 @@ Game.spawns["Spawn1"].spawnCreep([CARRY, CARRY, MOVE], "T1");
 Game.spawns["Spawn17"].spawnCreep([CARRY, CARRY, MOVE], "T52");
 Game.spawns["Spawn9"].spawnCreep([CARRY, CARRY, MOVE], "T53");
 
-console.log(Object.keys(Memory.MemRooms["E29S31"].MaxCreeps["T"]).length - 1);
-console.log(JSON.stringify(Memory.MemRooms["E29S31"].MaxCreeps["T"]["M"]));
+console.log(Object.keys(Memory.MemRooms["W59S14"].MaxCreeps["T"]).length - 1);
+console.log(JSON.stringify(Memory.MemRooms["W59S14"].MaxCreeps["T"]["M"]));
 
 // empty a terminal
 const terminal = Game.getObjectById("5cf1a7158e8ea635474264ca");
@@ -128,22 +132,21 @@ for (const resourceType in terminal.store) {
     terminal.send(resourceType, amount - 1, "E28S29");
   }
 }
-const terminal = Game.getObjectById("5cf1a7158e8ea635474264ca");
+
+// send energy to a terminal?
+const terminal = Game.getObjectById("putInTheIdHere");
 terminal.send(RESOURCE_ENERGY, terminal.store[RESOURCE_ENERGY] * 0.9, "E28S29");
 
 delete Memory.MemRooms["W59S14"].FctrId;
 
-const hostiles = Game.rooms["W17N41"].find(FIND_HOSTILE_CREEPS);
+const hostiles = Game.rooms["W59S14"].find(FIND_HOSTILE_CREEPS);
 console.log("hostiles " + JSON.stringify(hostiles[0].owner.username));
 
 for (const roomName in Memory.MemRooms) {
   const memRoom = Memory.MemRooms[roomName];
   delete memRoom.Built;
 }
-delete Memory.MemRooms["W17N49"].Built;
-
-// move a creep　クリープを移動
-Game.creeps["H1"].move(LEFT);
+delete Memory.MemRooms["W59S14"].Built;
 
 // -----------------------------------------------
 // 部屋の全部の自殺・自爆

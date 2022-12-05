@@ -190,7 +190,7 @@ const Util = {
       Game.map.getRoomLinearDistance(to, from) >
         15 /*creep should not move that much!*/
     ) {
-      return -1; // do not calculate this route!
+      return -1; // do not calculate this route
     }
     if (shouldCalculate) {
       // Use `findRoute` to calculate a high-level plan for this path,
@@ -266,7 +266,7 @@ const Util = {
               JSON.stringify(Memory.Paths[to])
           );
           delete Memory.Paths[to];
-          return -1; // do not calculate this route!
+          return -1; // do not calculate this route
         }
       }
       //Util.Info('Util', 'GenerateOuterRoomPath', 'calculated old path length ' + length + ' from ' + from + ' to ' + to);
@@ -326,7 +326,9 @@ const Util = {
     return username;
   },
 
-  /**@return {string}*/
+  /**return {string}
+   * of color code
+   * */
   GetColorCodeFromColor: function (flagColor) {
     switch (flagColor) {
       case COLOR_RED:
@@ -352,12 +354,14 @@ const Util = {
     }
   },
 
-  /**@return {boolean}*/
+  /**return {boolean}
+   * Should we Repair the Fortification or not?
+   * */
   ShouldRepairFortification: function (fortification) {
     if (!fortification || !fortification.room) {
       return false;
     }
-    const hits = fortification.hits;
+    const hits = fortification.hits; // The current amount of hit points of the structure.
     const roomLevel = fortification.room.controller.level;
     return (
       (fortification.structureType === STRUCTURE_RAMPART ||
@@ -392,7 +396,8 @@ const Util = {
     );
   },
 
-  /**@return {boolean}*/
+  /**
+   * return {boolean}*/
   IsProductionChain: function (
     factory,
     resourceTypeNeeded,
@@ -412,4 +417,5 @@ const Util = {
     );
   },
 };
+
 module.exports = Util;
