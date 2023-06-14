@@ -464,6 +464,14 @@ const Construction = {
       );
     }
 
+    /**
+     * Need to reorganize how ramparts are made
+     *
+     * @param {*} gameRoom
+     * @param {*} roomTerrain
+     * @param {*} structureType
+     * @returns
+     */
     function ConstructRampartsOn(gameRoom, roomTerrain, structureType) {
       if (
         Memory.MemRooms[gameRoom.name].Built &&
@@ -495,11 +503,11 @@ const Construction = {
           }
         }
         if (!foundRampart) {
-          const result = gameRoom.createConstructionSite(
-            structure.pos.x,
-            structure.pos.y,
-            STRUCTURE_RAMPART
-          );
+          // const result = gameRoom.createConstructionSite(
+          //   structure.pos.x,
+          //   structure.pos.y,
+          //   STRUCTURE_RAMPART
+          // );
           Util.InfoLog(
             "Construction",
             "ConstructRampartsOn",

@@ -1,11 +1,11 @@
 console.log(Game.map.describeExits("W59S14")); //[object Object]
 console.log(Game.rooms["W59S14"].controller.owner); //[object Object]
 console.log(Game.rooms["W59S14"].controller.progress);
-console.log(Game.rooms["W59S14"].StructureController.progress);
+console.log(Game.rooms["W59S14"].StructureController.progress); // progress undefined
 console.log(Game.map.describeExits("W59S14"));
 
 // where is a creep?
-console.log(Game.creeps["G2"].pos);
+console.log(Game.creeps["T2"].pos);
 
 // move to
 for (let G3 in Game.creeps) {
