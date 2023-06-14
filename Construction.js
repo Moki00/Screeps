@@ -162,7 +162,7 @@ const Construction = {
                         roomTerrain,
                         STRUCTURE_NUKER
                       );
-                      ConstructPerimeter(gameRoom, mainSpawn);
+                      // ConstructPerimeter(gameRoom, mainSpawn); // TODO: more walls, less ramparts
                       ConstructLabs(gameRoom, roomTerrain); // TODO
                     }
                   }
@@ -503,6 +503,11 @@ const Construction = {
           }
         }
         if (!foundRampart) {
+          Util.Info(
+            "Construction",
+            "ConstructRampartsOn",
+            gameRoom.name + " fix where to put Ramparts!"
+          );
           // const result = gameRoom.createConstructionSite(
           //   structure.pos.x,
           //   structure.pos.y,
@@ -816,11 +821,18 @@ const Construction = {
       );
     }
 
+    /**
+     * Creates a perimeter around the main spawn. Use more walls, less ramparts
+     *
+     * @param {*} gameRoom
+     * @param {*} mainSpawn
+     * @returns
+     */
     function ConstructPerimeter(gameRoom, mainSpawn) {
       if (
         !mainSpawn ||
         Memory.MemRooms[gameRoom.name]
-          .Built /*only build perimiter when a reset occurs*/
+          .Built /*only build perimeter when a reset occurs*/
       ) {
         return;
       }
