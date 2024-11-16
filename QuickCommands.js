@@ -22,6 +22,13 @@ Game.spawns["Spawn1"].spawnCreep([WORK, WORK, CARRY, MOVE], "B1", {
 Game.spawns["Spawn1"].spawnCreep([WORK, WORK, CARRY, MOVE], "H1", {
   memory: { role: "harvester" },
 });
+Game.spawns["Spawn1"].spawnCreep(
+  [WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE],
+  "B2",
+  {
+    memory: { role: "builder" },
+  }
+);
 Game.spawns["Spawn1"].spawnCreep([ATTACK, ATTACK, CARRY, MOVE], "W1", {
   memory: { role: "Warrior" },
 });

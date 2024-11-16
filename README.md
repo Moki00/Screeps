@@ -1,8 +1,5 @@
 # Screeps 　スクリープス
 
-_Started playing to learn; now playing to have fun and learn even more！_
-_最初は学ぶために始めた。今は楽しむしもっと学びたい！_
-
 ## create jobs
 
 **Game.memory.MemRooms で仕事を貯める**
