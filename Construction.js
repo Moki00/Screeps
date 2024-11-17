@@ -7,10 +7,14 @@ const Construction = {
 
       if (gameRoom && gameRoom.controller && gameRoom.controller.my) {
         const roomTerrain = gameRoom.getTerrain();
-        //const startCpu = Game.cpu.getUsed();
+        const startCpu = Game.cpu.getUsed();
         Build(gameRoom, roomTerrain);
-        //const elapsed = Game.cpu.getUsed() - startCpu;
-        //Util.Info('Construction', '', elapsed + ' ' + gameRoom.name + ' ' + gameRoom.controller.level);
+        const elapsed = Game.cpu.getUsed() - startCpu;
+        Util.Info(
+          "Construction",
+          "",
+          elapsed + " " + gameRoom.name + " " + gameRoom.controller.level
+        );
       } else if (Memory.MemRooms[memRoomKey].IsReserved) {
         ReservedRoomBuild(gameRoom, memRoomKey);
       }
@@ -508,11 +512,11 @@ const Construction = {
             "ConstructRampartsOn",
             gameRoom.name + " fix where to put Ramparts!"
           );
-          // const result = gameRoom.createConstructionSite(
-          //   structure.pos.x,
-          //   structure.pos.y,
-          //   STRUCTURE_RAMPART
-          // );
+          const result = gameRoom.createConstructionSite(
+            structure.pos.x,
+            structure.pos.y,
+            STRUCTURE_RAMPART
+          );
           Util.InfoLog(
             "Construction",
             "ConstructRampartsOn",

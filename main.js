@@ -36,12 +36,12 @@ module.exports.loop = function () {
               const foundCreeps = {};
               for (const memRoomKey in Memory.MemRooms) {
                 const memRoom = Memory.MemRooms[memRoomKey];
-                delete memRoom.Links; // buildings maybe deleted 建物が消されるかも
-                delete memRoom.FctrId; // buildings maybe deleted 建物が消されるかも
-                delete memRoom.PowerSpawnId; // buildings maybe deleted 建物が消されるかも
-                delete memRoom.TowerIds; // towers maybe deleted タワーが消されるかも
-                delete memRoom.ObserverId; // observer maybe deleted　展望台が消されるかも
-                delete memRoom.Built; // remove BuiltRoads - road maybe eroded 道が壊れたかも
+                delete memRoom.Links; // buildings maybe deleted 建物が消される
+                delete memRoom.FctrId; // buildings maybe deleted 建物が消される
+                delete memRoom.PowerSpawnId; // buildings maybe deleted 建物が消される
+                delete memRoom.TowerIds; // towers maybe deleted タワーが消される
+                delete memRoom.ObserverId; // observer maybe deleted　展望台が消される
+                delete memRoom.Built; // remove BuiltRoads - road maybe eroded 道が壊れた
                 delete memRoom.MissingSpawn; // remove the missing spawn notification handler
                 delete memRoom.IsReserved; // reserved room flag reset - room maybe not reserved
                 delete memRoom.MainRoom; // reserved room's main room name - maybe the reserved room should have a closer main room assigned?
