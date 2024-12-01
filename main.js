@@ -51,11 +51,11 @@ module.exports.loop = function () {
   console.log("Builders: " + builders.length);
 
   //Creeps that fight
-  var fighters = _.filter(
-    Game.creeps,
-    (creep) => creep.memory.role == "fighter"
-  );
-  console.log("Fighters: " + fighters.length);
+  //   var fighters = _.filter(
+  //     Game.creeps,
+  //     (creep) => creep.memory.role == "fighter"
+  //   );
+  //   console.log("Fighters: " + fighters.length);
 
   // Harvesters
   if (
@@ -69,7 +69,7 @@ module.exports.loop = function () {
     var newName = "Harvester" + Game.time;
     console.log("Spawning new harvester:" + newName);
     Game.spawns["Spawn1"].spawnCreep(
-      [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], //100*3+50*4=500
+      [WORK, WORK, WORK, WORK, CARRY, MOVE, CARRY, MOVE, MOVE, MOVE], //100*4+50*6=700
       // [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
       // [WORK, WORK, CARRY, MOVE], //100*2+50*3=300
       // [WORK, CARRY, MOVE], //100*+50*2=200
@@ -80,7 +80,7 @@ module.exports.loop = function () {
     );
   }
 
-  //  Upgraders
+  //  Make Upgraders
   if (
     upgraders.length <= 0 &&
     harvesters.length >= 1
@@ -102,9 +102,9 @@ module.exports.loop = function () {
     var newName = "Upgrader" + Game.time;
     console.log("Spawning new upgrader:" + newName);
     Game.spawns["Spawn1"].spawnCreep(
-      // [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], //100*3+50*4=500
+      [WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], //100*3+50*4=500
       // [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
-      [WORK, CARRY, MOVE], //100+50*2=200
+      // [WORK, CARRY, MOVE], //100+50*2=200
       newName,
       {
         memory: { role: "upgrader" },
@@ -112,7 +112,7 @@ module.exports.loop = function () {
     );
   }
 
-  //  Builders
+  //  Make Builders
   if (
     (builders.length <= 0 && harvesters.length >= 1 && upgraders.length >= 1) ||
     // 2nd
@@ -121,7 +121,9 @@ module.exports.loop = function () {
     var newName = "Builder" + Game.time;
     console.log("Spawning new builder:" + newName);
     Game.spawns["Spawn1"].spawnCreep(
-      [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
+      // [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
+      [WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], //100*4+50*5=650
+      // [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
       newName,
       {
         memory: { role: "builder" },
@@ -211,7 +213,7 @@ module.exports.loop = function () {
 
   //Tower #1
   // var towerSearch = tower.pos.findClosestByRange(FIND_STRUCTURES);
-  var tower = Game.getObjectById("5fc3c9d49b647bc0d4ef4762");
+  var tower = Game.getObjectById("638e30c561ad9e219d96044b");
   if (tower) {
     var closestDamagedStructure = tower.pos.findClosestByRange(
       FIND_STRUCTURES,

@@ -8,12 +8,15 @@ console.log(Game.map.describeExits("W59S14"));
 console.log(Game.creeps["T2"].pos);
 
 // move to
-for (let G3 in Game.creeps) {
-  Game.creeps[G3].moveTo(18, 23);
+for (let H1 in Game.creeps) {
+  Game.creeps[H1].moveTo(20, 23);
 }
 
 // move Left
 Game.creeps["H1"].move(LEFT);
+
+// Change Roles
+Game.creeps.H1.memory.role = "harvester";
 
 //spawn
 Game.spawns["Spawn1"].spawnCreep([WORK, WORK, CARRY, MOVE], "B1", {
