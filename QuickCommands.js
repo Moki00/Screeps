@@ -13,7 +13,7 @@ for (let G3 in Game.creeps) {
 }
 
 // move Left
-Game.creeps["T2"].move(LEFT);
+Game.creeps["H1"].move(LEFT);
 
 //spawn
 Game.spawns["Spawn1"].spawnCreep([WORK, WORK, CARRY, MOVE], "B1", {
