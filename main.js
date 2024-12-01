@@ -1,7 +1,7 @@
 let roleHarvester = require("role.harvester");
 let roleUpgrader = require("role.upgrader");
 let roleBuilder = require("role.builder");
-let roleFighter = require("role.fighter");
+// let roleFighter = require("role.fighter");
 // let towerManager = require("towerManager");
 
 // every game tick runs the code below one time
@@ -186,17 +186,17 @@ module.exports.loop = function () {
   // }
 
   // Fighters
-  if (fighters.length <= 0 && harvesters.length >= 1) {
-    var newName = "Fighter" + Game.time;
-    console.log("Spawning new fighter:" + newName);
-    Game.spawns["Spawn1"].spawnCreep(
-      [ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE], //80*2=160, +10*4=40, +50*2=100, =300
-      newName,
-      {
-        memory: { role: "fighter" },
-      }
-    );
-  }
+  //   if (fighters.length <= 0 && harvesters.length >= 1) {
+  //     var newName = "Fighter" + Game.time;
+  //     console.log("Spawning new fighter:" + newName);
+  //     Game.spawns["Spawn1"].spawnCreep(
+  //       [ATTACK, ATTACK, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE], //80*2=160, +10*4=40, +50*2=100, =300
+  //       newName,
+  //       {
+  //         memory: { role: "fighter" },
+  //       }
+  //     );
+  //   }
 
   //making creeps
   if (Game.spawns["Spawn1"].spawning) {
