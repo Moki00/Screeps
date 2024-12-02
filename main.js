@@ -123,7 +123,6 @@ module.exports.loop = function () {
     Game.spawns["Spawn1"].spawnCreep(
       // [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
       [WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE], //100*4+50*5=650
-      // [WORK, WORK, WORK, CARRY, MOVE], //100*3+50*2=400
       newName,
       {
         memory: { role: "builder" },
@@ -246,5 +245,9 @@ module.exports.loop = function () {
     if (creep.memory.role == "fighter") {
       roleFighter.run(creep);
     }
+  }
+
+  for (var i in Game.creeps) {
+    console.log(Game.creeps[i]);
   }
 };
