@@ -109,6 +109,3 @@ global.AGGRESSION_RAZE = 9;
 AGGRESSION_SCORES[AGGRESSION_RAZE] = 1000;
 
 global.TERMINAL_ENERGY = 20000;
-
-global.MAX_CONTROLLER_PROGRESS = 10900100; // 10.9 Million
-console.log(Game.rooms["W59S14"].controller.progress);
