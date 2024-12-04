@@ -246,8 +246,4 @@ module.exports.loop = function () {
       roleFighter.run(creep);
     }
   }
-
-  for (var i in Game.creeps) {
-    console.log(Game.creeps[i]);
-  }
 };
