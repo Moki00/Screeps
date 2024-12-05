@@ -53,15 +53,15 @@ class QosKernel {
     }
 
     // Announce new uploads
-    if (
-      !Memory.qos.script_version ||
-      Memory.qos.script_version !== SCRIPT_VERSION
-    ) {
-      Logger.log(`New script upload detected: ${SCRIPT_VERSION}`, LOG_WARN);
-      Memory.qos.script_version = SCRIPT_VERSION;
-      Memory.qos.script_upload = Game.time;
-      this.performance.clear();
-    }
+    // if (
+    /////   !Memory.qos.script_version ||
+    //   Memory.qos.script_version !== SCRIPT_VERSION
+    // ) {
+    //   Logger.log(`New script upload detected: ${SCRIPT_VERSION}`, LOG_WARN);
+    //   Memory.qos.script_version = SCRIPT_VERSION;
+    //   Memory.qos.script_upload = Game.time;
+    //   this.performance.clear();
+    // }
 
     if (this.newglobal) {
       Logger.log("New Global Detected", LOG_INFO);
