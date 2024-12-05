@@ -15,7 +15,7 @@ const QosLogger = require("logger");
 global.Logger = new QosLogger();
 
 /* Add "sos library" - https://github.com/ScreepsOS/sos-library */
-global.SOS_LIB_PREFIX = "thirdparty_";
+// global.SOS_LIB_PREFIX = "thirdparty_";
 global.sos_lib = require("sos_lib");
 
 /* Add additional room visualizations - https://github.com/screepers/RoomVisual */

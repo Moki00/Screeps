@@ -1,6 +1,6 @@
 'use strict'
 
-const distanceTransform = require('thirdparty_distancetransform')
+const distanceTransform = require('distancetransform')
 
 /**
  * Plan room structures
