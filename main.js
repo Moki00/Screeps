@@ -11,7 +11,7 @@ require("version");
 require("./constants");
 
 /* Enable QOS Logger */
-const QosLogger = require("qos_logger");
+const QosLogger = require("logger");
 global.Logger = new QosLogger();
 
 /* Add "sos library" - https://github.com/ScreepsOS/sos-library */
