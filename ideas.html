@@ -1,0 +1,52 @@
+how should I organize my files? I have a main.js file and more
+
+<!-- Organize -->
+organize code and add comments for better readability
+
+<!-- Debugging -->
+var result = creep.attack(target); if(result != OK) { console.log(creep + '
+failed to attack the target ' + target + ' with the code: ' + result); }
+
+<!-- creep -->
+make dying creeps recycle or Spawn.renewCreep Every creep dies after 1500 ticks
+
+<!-- building  -->
+Walls, roads, and containers don't belong to any player, so they should be
+searched with the help of FIND_STRUCTURES
+
+<!-- building -->
+Spawn extensions do not have to be placed near spawns, their range is the whole
+room.
+
+<!-- attack -->
+use Creep.attackController to downgrade hostile room controller
+
+<!-- movement -->
+Increasing the reusePath option in the Creep.moveTo method helps save CPU
+
+<!-- quorum -->
+github.com/ScreepsQuorum/screeps-quorum * #quorum in Slack”
+
+<!-- resources -->
+Reserve or claim neutral rooms to restore sources to full capacity.
+
+<!-- error -->
+## Error codes https://screeps.fandom.com/wiki/Error_Constants
+
+<!-- error -->
+OK: 0 ERR_NOT_OWNER: -1 ERR_NO_PATH: -2 ERR_NAME_EXISTS: -3 ERR_BUSY: -4
+ERR_NOT_FOUND: -5 ERR_NOT_ENOUGH_ENERGY: -6 ERR_NOT_ENOUGH_RESOURCES: -6
+ERR_INVALID_TARGET: -7 ERR_FULL: -8 ERR_NOT_IN_RANGE: -9 ERR_INVALID_ARGS: -10
+ERR_TIRED: -11 ERR_NO_BODYPART: -12 ERR_NOT_ENOUGH_EXTENSIONS: -6
+ERR_RCL_NOT_ENOUGH: -14 ERR_GCL_NOT_ENOUGH: -15
+
+<!-- ## Structures  -->
+STRUCTURE_SPAWN: "spawn", STRUCTURE_EXTENSION: "extension", STRUCTURE_ROAD:
+"road", STRUCTURE_WALL: "constructedWall", STRUCTURE_RAMPART: "rampart",
+STRUCTURE_KEEPER_LAIR: "keeperLair", STRUCTURE_PORTAL: "portal",
+STRUCTURE_CONTROLLER: "controller", STRUCTURE_LINK: "link", STRUCTURE_STORAGE:
+"storage", STRUCTURE_TOWER: "tower", STRUCTURE_OBSERVER: "observer",
+STRUCTURE_POWER_BANK: "powerBank", STRUCTURE_POWER_SPAWN: "powerSpawn",
+STRUCTURE_EXTRACTOR: "extractor", STRUCTURE_LAB: "lab", STRUCTURE_TERMINAL:
+"terminal", STRUCTURE_CONTAINER: "container", STRUCTURE_NUKER: "nuker",
+STRUCTURE_FACTORY: "factory", STRUCTURE_INVADER_CORE: "invaderCore"

@@ -1,62 +1,117 @@
-'use strict'
-
-class CityLabs extends kernel.process {
-  constructor (...args) {
-    super(...args)
-    this.priority = PRIORITIES_CITY_LABS
-  }
-
-  getDescriptor () {
-    return this.data.room
-  }
-
-  main () {
-    if (!Game.rooms[this.data.room]) {
-      return this.suicide()
-    }
-    this.room = Game.rooms[this.data.room]
-    if (!this.room.structures[STRUCTURE_LAB] || !this.room.getRoomSetting('LABS')) {
-      return this.suicide()
-    }
-
-    const limit = 2
-    let run = 0
-    const feeders = this.room.getFeederLabs()
-
-    if (!feeders[0].mineralAmount || feeders[0].mineralAmount < LAB_REACTION_AMOUNT) {
-      return
-    }
-    if (!feeders[1].mineralAmount || feeders[1].mineralAmount < LAB_REACTION_AMOUNT) {
-      return
-    }
-
-    const vats = this.room.getVatLabs()
-    if (!feeders || !vats) {
-      return
-    }
-    if (!feeders[0].mineralType || !feeders[1].mineralType) {
-      return
-    }
-    const product = REACTIONS[feeders[0].mineralType][feeders[1].mineralType]
-    for (const vat of vats) {
-      if (vat.cooldown) {
-        continue
-      }
-      if (vat.mineralAmount > 0) {
-        if (vat.mineralType !== product) {
-          continue
+let Util = require("Util");
+const Labs = {
+    run: function () {
+        for (const gameRoomKey in Game.rooms) {
+            const gameRoom = Game.rooms[gameRoomKey];
+            if (
+                gameRoom.controller &&
+                gameRoom.controller.my &&
+                gameRoom.controller.level === 8
+            ) {
+                const flags = gameRoom.find(FIND_FLAGS, {
+                    filter: function (flag) {
+                        return flag.color === COLOR_PURPLE;
+                    },
+                });
+                for (const flagKey in flags) {
+                    const flag = flags[flagKey];
+                    const lab = flag.pos.lookFor(LOOK_STRUCTURES)[0];
+                    TryPossibleReactionLab(lab, flag);
+                }
+            }
         }
-        if (vat.mineralCapacity - vat.mineralAmount < LAB_REACTION_AMOUNT) {
-          continue
-        }
-      }
-      vat.runReaction(feeders[0], feeders[1])
-      run++
-      if (run >= limit) {
-        break
-      }
-    }
-  }
-}
 
-module.exports = CityLabs
+        function TryPossibleReactionLab(lab, flag) {
+            if (!lab.cooldown) {
+                const mineral = flag.name.split("-")[1];
+                if (!lab.store || lab.store.getFreeCapacity(mineral) >= 5) {
+                    let result;
+                    switch (true) {
+                        case mineral === RESOURCE_ZYNTHIUM_KEANITE:
+                            result = Reaction(
+                                lab,
+                                RESOURCE_ZYNTHIUM,
+                                RESOURCE_KEANIUM
+                            );
+                            break;
+                        case mineral === RESOURCE_UTRIUM_LEMERGITE:
+                            result = Reaction(
+                                lab,
+                                RESOURCE_UTRIUM,
+                                RESOURCE_LEMERGIUM
+                            );
+                            break;
+                        case mineral === RESOURCE_GHODIUM:
+                            result = Reaction(
+                                lab,
+                                RESOURCE_ZYNTHIUM_KEANITE,
+                                RESOURCE_UTRIUM_LEMERGITE
+                            );
+                            break;
+                        case mineral === RESOURCE_GHODIUM_HYDRIDE:
+                            result = Reaction(
+                                lab,
+                                RESOURCE_GHODIUM,
+                                RESOURCE_HYDROGEN
+                            );
+                            break;
+                        case mineral === RESOURCE_HYDROXIDE:
+                            result = Reaction(
+                                lab,
+                                RESOURCE_HYDROGEN,
+                                RESOURCE_OXYGEN
+                            );
+                            break;
+                        case mineral === RESOURCE_GHODIUM_ACID:
+                            result = Reaction(
+                                lab,
+                                RESOURCE_GHODIUM_HYDRIDE,
+                                RESOURCE_HYDROXIDE
+                            );
+                            break;
+                        case mineral === RESOURCE_CATALYZED_GHODIUM_ACID:
+                            result = Reaction(
+                                lab,
+                                RESOURCE_CATALYST,
+                                RESOURCE_GHODIUM_ACID
+                            );
+                            break;
+                    }
+                    if (result) {
+                        Util.ErrorLog(
+                            "Labs",
+                            "Labs",
+                            "result " +
+                                result +
+                                " mineral " +
+                                mineral +
+                                " lab.store " +
+                                lab.store
+                        );
+                    }
+                }
+            }
+        }
+
+        function Reaction(lab, resource1, resource2) {
+            const lab1 = lab.pos.findInRange(FIND_MY_STRUCTURES, 2, {
+                filter: function (l) {
+                    return l.store && l.store[resource1] >= 5;
+                },
+            })[0];
+            if (lab1) {
+                const lab2 = lab.pos.findInRange(FIND_MY_STRUCTURES, 2, {
+                    filter: function (l) {
+                        return l.store && l.store[resource2] >= 5;
+                    },
+                })[0];
+                if (lab2) {
+                    const result = lab.runReaction(lab1, lab2);
+                    //Util.Info('Labs', 'Reaction', lab.pos.roomName + ' merge ' + resource1 + ' and ' + resource2);
+                    return result;
+                }
+            }
+        }
+    },
+};
+module.exports = Labs;
